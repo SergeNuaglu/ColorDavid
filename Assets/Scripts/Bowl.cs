@@ -3,8 +3,8 @@ using UnityEngine;
 public class Bowl : ColoredItem
 {
     [SerializeField] private SplashEffect _splashEffect;
-    public bool IsFixed { get; private set; }
-    public float GetAngleAboutZAxis(float circleTotalAngle)
+
+    public float GetAngleOnCircle(float circleTotalAngle)
     {
         float sin = transform.position.x * Vector3.forward.z - Vector3.forward.x * transform.position.z;
         float cos = transform.position.x * Vector3.forward.x + transform.position.z * Vector3.forward.z;

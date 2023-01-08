@@ -23,7 +23,7 @@ public class BowlSpawner : Spawner
             newBowl = Instantiate(_tamplate, GetSpawnPosition(i, transform.position.y), Quaternion.identity, transform);
             newBowl.SetColor(ColorData.BowlColors[i]);
             _bawlCircle.AddBall(newBowl);
-            rotation = Quaternion.Euler(0, _bawlCircle.FixedAnglesOfBowls[i], 0);
+            rotation = Quaternion.Euler(0, _bawlCircle.AngleFixator.FixedAngles[i], 0);
             newBowl.transform.rotation *= rotation;
         }
 

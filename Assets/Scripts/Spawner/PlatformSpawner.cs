@@ -35,17 +35,17 @@ public class PlatformSpawner : Spawner
         Quaternion rotation;
         float turnoverAngle = 180;
 
-        for (int i = 0; i < _bawlCircle.FixedAnglesOfBowls.Count; i++)
+        for (int i = 0; i < _bawlCircle.AngleFixator.FixedAngles.Count; i++)
         {
-            if (i < ColorData.ArrangementOfPlatforms.Count)
+            if (i < ColorData.ArrangementOfPlatforms.Count && i < ColorData.PlatformColors.Count)
             {
                 if (ColorData.ArrangementOfPlatforms[i])
                 {
-                    rotation = Quaternion.Euler(0, _bawlCircle.FixedAnglesOfBowls[i] + turnoverAngle, 0);
+                    rotation = Quaternion.Euler(0, _bawlCircle.AngleFixator.FixedAngles[i] + turnoverAngle, 0);
                     spawnPosition = GetSpawnPosition(i, _positionY, _bawlDistance);
                     newPlatform = Instantiate(_tamplate, spawnPosition, rotation, transform);
                     newPlatform.SetColor(ColorData.PlatformColors[i]);
-                    PlatformSpawned?.Invoke(newPlatform, spawnPosition, rotation,_bawlCircle.FixedAnglesOfBowls[i]);
+                    PlatformSpawned?.Invoke(newPlatform, spawnPosition, rotation,_bawlCircle.AngleFixator.FixedAngles[i]);
                 }
             }
         }

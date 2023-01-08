@@ -10,7 +10,6 @@ public class Hammer : MonoBehaviour
     {
         if (other.TryGetComponent<Bowl>(out Bowl bowl) && bowl.CurrentColor.CanPaint)
         {
-            Debug.Log(bowl.CurrentColor.CanPaint);
             bowl.SplashWithPaint();
             BowlHit?.Invoke(bowl);
         }

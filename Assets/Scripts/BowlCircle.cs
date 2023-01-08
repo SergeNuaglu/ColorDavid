@@ -9,18 +9,18 @@ public class BowlCircle : MonoBehaviour
 
     private List<Bowl> _bowls = new List<Bowl>();
     private List<David> _davids = new List<David>();
-    private List<float> _fixedAnglesOfBowls = new List<float>();
 
     public float TotalAngle { get; } = 360f;
     public float Radius => _radius;
     public float BowlArcAngle => _arcAngle;
-    public IReadOnlyList<float> FixedAnglesOfBowls => _fixedAnglesOfBowls;
+
+    public AngleFixator AngleFixator => _angleFixator;
     public IReadOnlyList<David> Davids => _davids;
 
     public void AddBall(Bowl newBawl)
     {
         _bowls.Add(newBawl);
-        FixAngle(newBawl.GetAngleAboutZAxis(TotalAngle));
+        _angleFixator.FixAngle(newBawl.GetAngleOnCircle(TotalAngle));
     }
 
     public void AddDavid(David newDavid)
@@ -38,11 +38,11 @@ public class BowlCircle : MonoBehaviour
         for (int i = 0; i != limit; i = _bowls.Count - (++i))
         {
             limit = uint.MinValue;
-            angleAboutZAxis = _bowls[i].GetAngleAboutZAxis(TotalAngle);
+            angleAboutZAxis = _bowls[i].GetAngleOnCircle(TotalAngle);
 
-            for (int j = 0; j < FixedAnglesOfBowls.Count; j++)
+            for (int j = 0; j <_angleFixator.FixedAngles.Count; j++)
             {
-                angleDifference = angleAboutZAxis - FixedAnglesOfBowls[j];
+                angleDifference = angleAboutZAxis - _angleFixator.FixedAngles[j];
 
                 if (Mathf.Abs(angleDifference) < Mathf.Abs(smallerDifference))
                     smallerDifference = angleDifference;
@@ -66,28 +66,30 @@ public class BowlCircle : MonoBehaviour
     public float GetCurrentAngle()
     {
         int checkBallIndex = 0;
-        return _bowls[checkBallIndex].GetAngleAboutZAxis(TotalAngle);
+        return _bowls[checkBallIndex].GetAngleOnCircle(TotalAngle);
     }
 
     public void TryAllowHitBowls()
     {
+        float roundedAngle;
+        float minValue = 0f;
+
         foreach (var david in _davids)
         {
             foreach (var bowl in _bowls)
             {
-                //Debug.Log("DavidAngle: " + david.PositionAngle + " BowlAngle: " + bowl.GetAngleAboutZAxis(TotalAngle));
-                //Debug.Log(Mathf.Approximately(david.PositionAngle, bowl.GetAngleAboutZAxis(TotalAngle)));
-                if (Mathf.Approximately(david.PositionAngle, bowl.GetAngleAboutZAxis(TotalAngle)) && bowl.CurrentColor.CanPaint)
+                roundedAngle = Mathf.Round(bowl.GetAngleOnCircle(TotalAngle));
+
+                if (roundedAngle == TotalAngle)
+                    roundedAngle = minValue;
+
+                if (Mathf.Approximately(david.PositionAngle, roundedAngle) && bowl.CurrentColor.CanPaint)
                 {
                     david.HitBowl();
+                    break;
                 }
             }
         }
-    }
-
-    private void FixAngle(float angle)
-    {
-        _fixedAnglesOfBowls.Add(angle);
     }
 }
 
