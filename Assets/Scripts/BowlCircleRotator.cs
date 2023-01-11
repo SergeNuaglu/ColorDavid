@@ -1,11 +1,10 @@
  using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private BowlCircle _circle;
+    [SerializeField] private Circle _circle;
     [SerializeField] private float _minRotation;
     [SerializeField] private float _speed;
 
@@ -16,24 +15,17 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private float _lastCircleAngle;
     private float _currentCircleAngle;
 
-    private void Start()
-    {
-        _lastCircleAngle = _circle.GetCurrentAngle();
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (_canRotate)
-        {
-            TryStopCoroutine(_checkCircleFixationJob);
-            TryStopCoroutine(_completeRotationJob);
-        }
+        _lastCircleAngle = _circle.transform.eulerAngles.y;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (_canRotate)
         {
+            TryStopCoroutine(_checkCircleFixationJob);
+            TryStopCoroutine(_completeRotationJob);
             _rotationY = Quaternion.Euler(0, eventData.delta.x * _speed, 0);
             Rotate(_circle.transform.rotation * _rotationY);
         }
@@ -43,9 +35,9 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         if (_canRotate)
         {
+            _canRotate = false;
             _rotationY = _circle.GetRotationToFixedPosition();
-            _currentCircleAngle = _circle.GetCurrentAngle();
-            TryStopCoroutine(_completeRotationJob);
+            _currentCircleAngle = _circle.transform.eulerAngles.y;
             _completeRotationJob = StartCoroutine(CompleteRotationRutine(_circle.transform.rotation * _rotationY));
         }
     }
@@ -80,10 +72,12 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (Mathf.Abs(deltaAngle) > _minRotation)
         {
             _circle.TryAllowHitBowls();
-            _canRotate = false;
-            _lastCircleAngle = _circle.GetCurrentAngle();
             yield return waitingTime;
             _checkCircleFixationJob = StartCoroutine(CheckCircleFixation());
+        }
+        else
+        {
+            _canRotate = true;
         }
     }
 

@@ -1,13 +1,29 @@
 using UnityEngine;
 
-public class Platform : ColoredItem
+public class Platform : CircleItem
 {
-    [SerializeField] private ParticleSystem _poolEffect;
+    [SerializeField] private David _david;
 
-    public void CreatePool(Color color)
+    public David David => _david;
+    public float AngleOnCircle { get; private set; }
+
+    private void OnEnable()
     {
-        var main = _poolEffect.main;
-        main.startColor = color;
-        _poolEffect.Play();
+        David.ColorExchanging += OnColorExchanging;
+    }
+
+    private void OnDisable()
+    {
+        David.ColorExchanging -= OnColorExchanging;
+    }
+
+    public void SetAngleOnCircle()
+    {
+        AngleOnCircle = GetAngleOnCircle();
+    }
+
+    private void OnColorExchanging(Color color)
+    {
+        HitEffect.PlayEffect(color);
     }
 }

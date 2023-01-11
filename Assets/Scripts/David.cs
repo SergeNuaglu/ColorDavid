@@ -1,16 +1,20 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
-public class David : ColoredItem
+[RequireComponent(typeof(Renderer))]
+
+public class David : MonoBehaviour, IColoredItem
 {
     [SerializeField] Hammer _hammer;
 
-    private float _positionAngle;
-    private Platform _platform;
+    private Renderer _renderer;
     private Animator _animator;
     private const string Hit = "Hit";
 
-    public float PositionAngle => _positionAngle;
+    public ItemColor CurrentColor {get;private set;}
+
+    public event UnityAction<Color> ColorExchanging;
 
     private void OnEnable()
     {
@@ -22,15 +26,10 @@ public class David : ColoredItem
         _hammer.BowlHit -= OnBowlHit;
     }
 
-    private void Start()
+    private void Awake()
     {
+        _renderer= GetComponent<Renderer>();
         _animator = GetComponent<Animator>();
-    }
-
-    public void Init(Platform platform, float positionAngle)
-    {
-        _platform = platform;
-        _positionAngle = positionAngle;
     }
 
     public bool IsHitAnimationPlaying()
@@ -44,16 +43,22 @@ public class David : ColoredItem
         _animator.SetTrigger(Hit);
     }
 
-    private void OnBowlHit(ColoredItem colorItem)
+    private void OnBowlHit(IColoredItem colorItem)
     {
-        _platform.CreatePool(colorItem.CurrentMainColor);
+        ColorExchanging?.Invoke(colorItem.CurrentColor.MainColor);
         ExchangeColors(colorItem);
     }
 
-    private void ExchangeColors(ColoredItem colorItem)
+    private void ExchangeColors(IColoredItem colorItem)
     {
-        ColorOfItem tempColor = CurrentColor;
-        SetColor(colorItem.CurrentColor);
-        colorItem.SetColor(tempColor);
+        ItemColor tempColor = CurrentColor;
+        SetItemColor(colorItem.CurrentColor);
+        colorItem.SetItemColor(tempColor);
+    }
+
+    public void SetItemColor(ItemColor newColor)
+    {
+        CurrentColor = newColor;
+        _renderer.material.color = CurrentColor.MainColor;
     }
 }

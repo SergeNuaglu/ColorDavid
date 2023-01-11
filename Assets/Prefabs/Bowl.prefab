@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2189899126994900750}
   - component: {fileID: 1176032678653882804}
   - component: {fileID: 1665946631988320900}
+  - component: {fileID: 5623596083567831228}
   m_Layer: 0
   m_Name: Bowl
   m_TagString: Untagged
@@ -112,8 +113,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1539bd26d787e364b80566c362a495c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitEffect: {fileID: 5623596083567831228}
   _renderer: {fileID: 5485168076266968007}
-  _splashEffect: {fileID: 6955977091371406789}
+--- !u!114 &5623596083567831228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388692579381130971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c104f0bf351e4aa4eba9d8058046dd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectPrefab: {fileID: 695315570}
 --- !u!1001 &559684387617342582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,7 +142,11 @@ PrefabInstance:
     - target: {fileID: 559684387230328837, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fb551bbeb60294300b736f60a9f30137, type: 2}
+      objectReference: {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
+    - target: {fileID: 559684387230328838, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8392157
+      objectReference: {fileID: 0}
     - target: {fileID: 559684387230328839, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -193,13 +211,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: LongSplatter
       objectReference: {fileID: 0}
+    - target: {fileID: 559684388515958311, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8392157
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
---- !u!198 &695315568 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 559684387230328838, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
-  m_PrefabInstance: {fileID: 559684387617342582}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &695315569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 559684387230328839, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
@@ -208,25 +225,6 @@ Transform:
 --- !u!1 &695315570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 559684387230328836, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
-  m_PrefabInstance: {fileID: 559684387617342582}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6955977091371406789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695315570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c104f0bf351e4aa4eba9d8058046dd4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _parentSplotter: {fileID: 695315568}
-  _longSplotter: {fileID: 1569770065}
---- !u!198 &1569770065 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 559684388515958311, guid: 0ae248930b9e64c4a92a482596bc409c, type: 3}
   m_PrefabInstance: {fileID: 559684387617342582}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5485168076265065383
@@ -238,7 +236,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 0c323bbbfaf9c9445bb7f6a55160629b, type: 3}
       propertyPath: m_Name
-      value: Water
+      value: Paint
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0c323bbbfaf9c9445bb7f6a55160629b, type: 3}
       propertyPath: m_RootOrder

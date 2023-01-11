@@ -1,32 +1,16 @@
-
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BowlSpawner : Spawner
 {
-    [SerializeField] private Bowl _tamplate;
-
-    public event UnityAction AllBowlsSpawned;
-    private void Start()
+    protected override void InstantiateItem(GameObject template, int stepNumber)
     {
-        Step = CalculateStep();
-        Spawn();
-    }
-
-    protected override void Spawn()
-    {
-        Bowl newBowl;
-        Quaternion rotation;
-
-        for (int i = 0; i < ColorData.BowlColors.Count; i++)
+        GameObject newItem = Instantiate(template, GetSpawnPosition(Counter, transform.position.y), Quaternion.identity, transform);
+  
+        if(newItem.TryGetComponent<Bowl>(out Bowl bowl))
         {
-            newBowl = Instantiate(_tamplate, GetSpawnPosition(i, transform.position.y), Quaternion.identity, transform);
-            newBowl.SetColor(ColorData.BowlColors[i]);
-            _bawlCircle.AddBall(newBowl);
-            rotation = Quaternion.Euler(0, _bawlCircle.AngleFixator.FixedAngles[i], 0);
-            newBowl.transform.rotation *= rotation;
+            TrySetColor(bowl, stepNumber);
+            Circle.AddBall(bowl);
         }
-
-        AllBowlsSpawned?.Invoke();
     }
 }

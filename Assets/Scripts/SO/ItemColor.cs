@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ItemData/ItemColor", order = 51)]
 
-public class ColorOfItem : ScriptableObject
+public class ItemColor : ScriptableObject
 {
     [SerializeField] private Color _mainColor;
     [SerializeField] private Color _shadedColor;
