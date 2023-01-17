@@ -4,13 +4,21 @@ using UnityEngine.Events;
 public class Hammer : MonoBehaviour
 {
     public event UnityAction<IColoredItem> BowlHit;
+    public event UnityAction BowlIsFreezing;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Bowl>(out Bowl bowl) && bowl.CurrentColor.CanPaint)
+        if (other.TryGetComponent<Bowl>(out Bowl bowl))
         {
-            bowl.HitEffect.PlayEffect(bowl.CurrentMainColor);
-            BowlHit?.Invoke(bowl);
+            if (bowl.CurrentColor.CanFreeze)
+            {
+                BowlIsFreezing?.Invoke();
+            }
+            else if (bowl.CurrentColor.CanPaint)
+            {
+                bowl.HitEffect.PlayEffect(bowl.CurrentMainColor);
+                BowlHit?.Invoke(bowl);
+            }
         }
     }
 }

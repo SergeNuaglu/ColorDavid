@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f870fe91488499479329be513ac59f5, type: 3}
+  m_Name: DavidSpawnData
+  m_EditorClassIdentifier: 
+  _arrangementData: 
+  _itemColors:
+  - {fileID: 11400000, guid: bef149db21e4810439319a029c913533, type: 2}
+  _defaultColor: {fileID: 11400000, guid: bef149db21e4810439319a029c913533, type: 2}

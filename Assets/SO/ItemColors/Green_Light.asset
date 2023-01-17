@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b882915a75147044a501172cdd807b5, type: 3}
+  m_Name: Green_Light
+  m_EditorClassIdentifier: 
+  _mainColor: {r: 0.62592673, g: 1, b: 0.27735847, a: 1}
+  _shadedColor: {r: 0.23999044, g: 0.745283, b: 0.0028123332, a: 1}
+  _canPaint: 1
+  _canFreeze: 0

@@ -83,6 +83,7 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private IEnumerator CheckCircleFixation()
     {
+        Debug.Log(_circle.IsLocked());
         while (_circle.IsLocked())
             yield return null;
 

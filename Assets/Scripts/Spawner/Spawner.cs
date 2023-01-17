@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 
 public abstract class Spawner : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public abstract class Spawner : MonoBehaviour
     protected int Counter;
 
     protected Circle Circle => _circle;
+    protected ItemSpawnData ItemSpawnData => _itemSpawnData;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public abstract class Spawner : MonoBehaviour
     {
         float positionX = (_circle.Radius + radiusOffset) * Mathf.Sin(_step * stepNumber);
         float positionZ = (_circle.Radius + radiusOffset) * Mathf.Cos(_step * stepNumber);
-        return new Vector3(positionX, positionY, positionZ);
+        return new Vector3(positionX + _circle.transform.position.x, positionY, positionZ + _circle.transform.position.z);
     }
 
     protected void TrySetColor(IColoredItem coloredItem, int stepNumber)

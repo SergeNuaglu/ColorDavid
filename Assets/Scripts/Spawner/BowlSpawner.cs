@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class BowlSpawner : Spawner
 {
@@ -9,6 +8,7 @@ public class BowlSpawner : Spawner
   
         if(newItem.TryGetComponent<Bowl>(out Bowl bowl))
         {
+            bowl.Init(Circle);
             TrySetColor(bowl, stepNumber);
             Circle.AddBall(bowl);
         }

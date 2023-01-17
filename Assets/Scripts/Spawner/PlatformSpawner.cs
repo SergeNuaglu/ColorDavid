@@ -5,6 +5,13 @@ public class PlatformSpawner : Spawner
     [SerializeField] private float _bawlDistance;
     [SerializeField] private float _positionY;
     [SerializeField] private ItemSpawnData _davidSpawnData;
+    [SerializeField] private Arrangement _secretsArrangement;
+
+    private void Awake()
+    {
+        if(_secretsArrangement == null)
+            _secretsArrangement = new Arrangement();
+    }
 
     protected override void InstantiateItem(GameObject template, int stepNumber)
     {
@@ -13,9 +20,21 @@ public class PlatformSpawner : Spawner
 
         if (newItem.TryGetComponent<Platform>(out Platform platform))
         {
-            TrySetColor(platform, stepNumber);         
+            platform.Init(Circle);
+
+            if (stepNumber < _secretsArrangement.Data.Count) 
+                if (_secretsArrangement.Data[stepNumber])
+                    platform.BecameSecret(ItemSpawnData.DefaultColor);
+
+                TrySetColor(platform, stepNumber);
+
             Circle.AddPlatform(platform);
             TrySetColor(platform.David, stepNumber, _davidSpawnData);
+
+            if (_bawlDistance < 0)
+            {
+                platform.David.transform.rotation *= Quaternion.Euler(0, 180, 0);
+            }
         }
     }
 }
