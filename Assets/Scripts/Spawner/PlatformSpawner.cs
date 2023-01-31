@@ -1,40 +1,65 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformSpawner : Spawner
+public class PlatformSpawner : CircleItemSpawner
 {
     [SerializeField] private float _bawlDistance;
     [SerializeField] private float _positionY;
-    [SerializeField] private ItemSpawnData _davidSpawnData;
-    [SerializeField] private Arrangement _secretsArrangement;
+    [SerializeField] private List<ShopScreen> _shops;
+    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private ScreensHandler _screenHandler;
 
-    private void Awake()
+    private OneMoveColorData _platformColorData;
+    private OneMoveColorData _davidColorData;
+    private Arrangement _platformArrangementData; 
+
+    protected override void Awake()
     {
-        if(_secretsArrangement == null)
-            _secretsArrangement = new Arrangement();
+        _platformColorData = SpawnData.PlatformColorData;
+        _davidColorData = SpawnData.DavidColorData;
+        _platformArrangementData = SpawnData.PlatformArrangement;
+        base.Awake();
     }
 
-    protected override void InstantiateItem(GameObject template, int stepNumber)
+    protected override void TryInstantiateItem(GameObject template, int stepNumber)
     {
-        Vector3 spawnPosition = GetSpawnPosition(Counter, _positionY, _bawlDistance);
-        GameObject newItem = Instantiate(template, spawnPosition, Quaternion.identity, transform);
+        Vector3 spawnPosition;
 
-        if (newItem.TryGetComponent<Platform>(out Platform platform))
+        if (_platformArrangementData.Data[stepNumber])
         {
-            platform.Init(Circle);
+            spawnPosition = GetSpawnPosition(stepNumber, _positionY, _bawlDistance);
+            GameObject newItem = Instantiate(template, spawnPosition, Quaternion.identity, transform);
 
-            if (stepNumber < _secretsArrangement.Data.Count) 
-                if (_secretsArrangement.Data[stepNumber])
-                    platform.BecameSecret(ItemSpawnData.DefaultColor);
-
-                TrySetColor(platform, stepNumber);
-
-            Circle.AddPlatform(platform);
-            TrySetColor(platform.David, stepNumber, _davidSpawnData);
-
-            if (_bawlDistance < 0)
+            if (newItem.TryGetComponent<Platform>(out Platform platform))
             {
-                platform.David.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                platform.Init(Circle);
+
+                if (SpawnData.SecretPlatformArrangement.Data[Counter])
+                    platform.BecameSecret();
+
+                platform.SetItemColor(_platformColorData.ItemColors[Counter]);
+                platform.David.SetItemColor(_davidColorData.ItemColors[Counter]);
+                platform.David.Init(_screenHandler);
+                InitGoodSpawners(platform.David);
+                _audioManager.Init(platform);
+                Circle.AddPlatform(platform);
+
+                if (_bawlDistance < 0)
+                {
+                    platform.David.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                }
             }
+
+            Counter++;
         }
+    }
+
+    private void InitGoodSpawners(David david)
+    {
+        GoodSpawner[] spawners = david.GetComponentsInChildren<GoodSpawner>();
+
+        foreach (var shop in _shops)
+            foreach (var spawner in spawners)
+                spawner.Init(shop);
     }
 }

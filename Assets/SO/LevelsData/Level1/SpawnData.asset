@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a158de7c04b0c947a5d41fe9527b470, type: 3}
+  m_Name: SpawnData
+  m_EditorClassIdentifier: 
+  _circleStepCount: 12
+  _platformArrangement: {fileID: 11400000, guid: 70e0a70122cd46649932f93b799acdb0, type: 2}
+  _secretPlatformArrangement: {fileID: 11400000, guid: 2330bec7437c3dd47b6ce5a009a8262b, type: 2}
+  _platformColorData: {fileID: 11400000, guid: 6a7f3eda18bdbd945afc64c1a8c9a1a1, type: 2}
+  _davidColorData: {fileID: 11400000, guid: a2a954957ecef4441acf0eb21f355e07, type: 2}
+  _platformCount: 1
+  _bowlCount: 1
+  _moveHolder: {fileID: 11400000, guid: 4103c3185d1b0de438f505f9507f8170, type: 2}

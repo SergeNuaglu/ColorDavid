@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Hammer : MonoBehaviour
+public class Hammer : Good
 {
     public event UnityAction<IColoredItem> BowlHit;
     public event UnityAction BowlIsFreezing;

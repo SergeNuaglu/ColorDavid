@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ItemData/ItemColor", order = 51)]
+[CreateAssetMenu(fileName = "ColorData", menuName = "CircleItemData/ColorData", order = 51)]
 
 public class ItemColor : ScriptableObject
 {
@@ -11,7 +11,6 @@ public class ItemColor : ScriptableObject
 
     public Color MainColor => _mainColor;
     public Color ShadedColor => _shadedColor;
-    public Color DefaultColor { get { return Color.white; } set { } }
     public bool CanPaint => _canPaint;  
     public bool CanFreeze => _canFreeze;
 }

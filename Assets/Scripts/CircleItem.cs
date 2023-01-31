@@ -10,6 +10,8 @@ public class CircleItem : MonoBehaviour, IColoredItem
     private Texture _standartTexture;
     private Circle _circle;
 
+    protected Circle Circle => _circle;
+
     public ItemColor CurrentColor => _currentColor;
     public Color CurrentMainColor => _currentColor.MainColor;
     public HitEffect HitEffect => _hitEffect;
