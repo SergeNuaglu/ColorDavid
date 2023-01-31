@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f870fe91488499479329be513ac59f5, type: 3}
-  m_Name: Davids
+  m_Script: {fileID: 11500000, guid: de84f747282b8e04eb23c6b57aadf167, type: 3}
+  m_Name: PlatformColorData1
   m_EditorClassIdentifier: 
-  _arrangementData: 
   _itemColors:
-  - {fileID: 11400000, guid: e0a8d9387af9dcb449a25dd6b19a7c7f, type: 2}
   - {fileID: 11400000, guid: d0a994918799b2e458d840d9369f825a, type: 2}
-  _defaultColor: {fileID: 11400000, guid: 27270fbbc22af5045add55b6e909b3ad, type: 2}
+  - {fileID: 11400000, guid: e0a8d9387af9dcb449a25dd6b19a7c7f, type: 2}

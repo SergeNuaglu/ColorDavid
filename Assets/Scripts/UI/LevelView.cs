@@ -25,8 +25,8 @@ public class LevelView : ItemView
 
     public void Init(int levelBuildIndex, int itemNumber)
     {
-        _levelBuildIndex= levelBuildIndex;
-        _number= itemNumber;
+        _levelBuildIndex = levelBuildIndex;
+        _number = itemNumber;
     }
 
     public override void Render()

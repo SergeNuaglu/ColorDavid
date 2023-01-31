@@ -761,8 +761,7 @@ MonoBehaviour:
   _homeButton: {fileID: 1768942705}
   _restartButton: {fileID: 46306645}
   _stepForwardButton: {fileID: 1459626409}
-  _circleRotator: {fileID: 0}
-  _stepCount: {fileID: 0}
+  _levelNumber: {fileID: 1709214622}
 --- !u!1 &147278842
 GameObject:
   m_ObjectHideFlags: 0
