@@ -13,7 +13,7 @@ public class ScreensHandler : MonoBehaviour
     [SerializeField] private ShopScreen _glassesShopScreen;
     [SerializeField] private ShopScreen _hammersShopScreen;
 
-    private int _nextSceneBuildIndex;
+    private int _sceneBuildIndex;
     private int _sceneCount;
     private readonly int _minMoveCount = 0;
 
@@ -54,10 +54,8 @@ public class ScreensHandler : MonoBehaviour
     }
     private void Start()
     {
-        var sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        _sceneCount = SceneManager.sceneCount;
-        Debug.Log(_sceneCount);
-        _nextSceneBuildIndex = ++sceneBuildIndex;
+        _sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        _sceneCount = SceneManager.sceneCountInBuildSettings;
         StartGame();
     }
 
@@ -68,7 +66,12 @@ public class ScreensHandler : MonoBehaviour
 
     private void OnNextButtonClicked()
     {
-        SceneManager.LoadScene(_nextSceneBuildIndex);
+        int _nextSceneBuildIndex = _sceneBuildIndex + 1;
+
+        if (_nextSceneBuildIndex < _sceneCount)
+            SceneManager.LoadScene(_nextSceneBuildIndex);
+        else
+            SceneManager.LoadScene(_sceneBuildIndex);
     }
 
     private void OnHomeButtonClicked()
