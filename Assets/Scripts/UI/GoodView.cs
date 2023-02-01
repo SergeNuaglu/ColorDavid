@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GoodView : ItemView
 {
-    [SerializeField] Image _icon;
+    [SerializeField] private Image _icon;
 
     private Good _good;
 

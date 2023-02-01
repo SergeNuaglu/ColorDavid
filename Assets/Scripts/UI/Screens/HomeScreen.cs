@@ -28,9 +28,9 @@ public class HomeScreen : Screen
 
     private void OnDisable()
     {
-        _levelButton.onClick.RemoveAllListeners(); 
-        _shopButton.onClick.RemoveAllListeners(); 
-        _soundButton.onClick.RemoveAllListeners(); 
+        _levelButton.onClick.RemoveAllListeners();
+        _shopButton.onClick.RemoveAllListeners();
+        _soundButton.onClick.RemoveAllListeners();
         _exitButton.onClick.RemoveAllListeners();
     }
 
@@ -42,9 +42,9 @@ public class HomeScreen : Screen
 
     private void OnSoundButtonClick()
     {
-       if(_audioManager.SwitchIsMuted())
+        if (_audioManager.SwitchIsMuted())
             _soundImage.sprite = _soundOffIcon;
-       else
+        else
             _soundImage.sprite = _soundOnIcon;
     }
 }

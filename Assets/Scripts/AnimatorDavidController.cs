@@ -1,9 +1,9 @@
-public static class AnimatorDavidController 
+public static class AnimatorDavidController
 {
     public static class Params
     {
         public const string Hit = nameof(Hit);
-        public const string Freeze = nameof(Freeze);
+        public const string FreezeOn = nameof(FreezeOn);
         public const string FreezeOff = nameof(FreezeOff);
         public const string Victory = nameof(Victory);
         public const string GetHammer = nameof(GetHammer);

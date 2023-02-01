@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_2.unity
     guid: 32970a47cc418a1409c8c3618748758f
   - enabled: 1
-    path: Assets/Scenes/Level_3_2Steps_.unity
-    guid: 68684a0b529b1ec4dab1008ba07da520
+    path: Assets/Scenes/Level_3.unity
+    guid: d2754b3909c9cd146a0fd277a053530f
   - enabled: 1
     path: Assets/Scenes/Level_4.unity
     guid: 2e026777c442bcd4799ae99bb2142ee2
@@ -31,50 +31,56 @@ EditorBuildSettings:
     guid: b35ed93a0f3b6ac4e9390c01665a57fd
   - enabled: 1
     path: Assets/Scenes/Level_9.unity
-    guid: 1e7ab2b562e140a4097d31cbaeebc6d3
-  - enabled: 1
-    path: Assets/Scenes/Level_10.unity
-    guid: 8be373c52438d5741bd3ed98360c2e52
-  - enabled: 1
-    path: Assets/Scenes/Boss_0.unity
-    guid: ac81dc8f51b162440a6cc0ddbac661be
-  - enabled: 1
-    path: Assets/Scenes/Level_11.unity
-    guid: b51c9dc3104f79d41b61e961dc64d17f
-  - enabled: 1
-    path: Assets/Scenes/Level_12.unity
-    guid: f79b11179e1617b4ca06130dec2113a1
-  - enabled: 1
-    path: Assets/Scenes/Level_13.unity
-    guid: e9b73f69fdd86734fb99a0c17b8befb1
-  - enabled: 1
-    path: Assets/Scenes/Level_14.unity
-    guid: a97757368498264499b6a062296ae510
-  - enabled: 1
-    path: Assets/Scenes/Level_15.unity
-    guid: 4b56a746eb63ebe49812ea1a374d0536
-  - enabled: 1
-    path: Assets/Scenes/Boss_1.unity
-    guid: 3b1462221fc59bf4a93fb8e959ad6f5b
-  - enabled: 1
-    path: Assets/Scenes/Level_16.unity
-    guid: 68f66148e426e314b8b2a95a742e7aed
-  - enabled: 1
-    path: Assets/Scenes/Level_17.unity
-    guid: 8f94bee5a1a3f7445aa54e5942d8f86b
-  - enabled: 1
-    path: Assets/Scenes/Level_18.unity
-    guid: 9511ab8eb501fc745962a45f98eeaf3f
-  - enabled: 1
-    path: Assets/Scenes/Level_19.unity
-    guid: 2b4881d50eac9b6459b459acee18769a
-  - enabled: 1
-    path: Assets/Scenes/Level_20.unity
-    guid: 54b6fd6ed5133174696ff071055fed07
-  - enabled: 1
-    path: Assets/Scenes/Boss_3.unity
-    guid: a57af13035671814092a8d8cc3eb72e8
+    guid: bc563a34c4e09754797dc0c18c198a48
   - enabled: 0
     path: 
-    guid: 3e22cb8a9d58ab049b0c90723814b090
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

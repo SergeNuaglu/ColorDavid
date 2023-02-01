@@ -19,7 +19,7 @@ public class Gift : MonoBehaviour
     private void Awake()
     {
         _currentFullness = GetCurrentValue();
-        _image.fillAmount= _currentFullness * _onePercentValue;
+        _image.fillAmount = _currentFullness * _onePercentValue;
         _fullnessDisplay.text = _currentFullness.ToString() + _percentSign;
 
         if (_currentFullness == _maxValue)

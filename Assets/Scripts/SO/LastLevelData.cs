@@ -11,5 +11,5 @@ public class LastLevelData : ScriptableObject
     public void Set(int data)
     {
         _data = data;
-    }  
+    }
 }

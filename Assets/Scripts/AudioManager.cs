@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,12 +15,10 @@ public class AudioManager : MonoBehaviour
     private Coroutine _waitingRoutine;
     private bool _isMuted;
 
-
     private void OnEnable()
     {
         _circle.AllColorsMatched += OnAllColorMatched;
     }
-
 
     private void OnDisable()
     {
@@ -30,6 +27,9 @@ public class AudioManager : MonoBehaviour
             platform.ColorMatched -= OnColorMatched;
             platform.ColorExchanged -= OnColorExchanged;
         }
+
+        if (_waitingRoutine != null)
+            StopCoroutine(_waitingRoutine);
     }
 
     private void Start()
@@ -85,7 +85,5 @@ public class AudioManager : MonoBehaviour
 
         yield return waitingTime;
         Play(_colorMatchSound);
-        StopCoroutine(_waitingRoutine);
-        _waitingRoutine = null;
     }
 }

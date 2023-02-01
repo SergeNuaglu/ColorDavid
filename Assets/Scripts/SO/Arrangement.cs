@@ -8,6 +8,7 @@ public class Arrangement : ScriptableObject
     [SerializeField] private bool[] _data;
 
     private int _maxLength;
+
     public IReadOnlyList<bool> Data => _data;
 
     public void SetLenght(int length)

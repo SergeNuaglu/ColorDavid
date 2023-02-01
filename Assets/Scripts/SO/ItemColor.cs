@@ -11,6 +11,6 @@ public class ItemColor : ScriptableObject
 
     public Color MainColor => _mainColor;
     public Color ShadedColor => _shadedColor;
-    public bool CanPaint => _canPaint;  
+    public bool CanPaint => _canPaint;
     public bool CanFreeze => _canFreeze;
 }

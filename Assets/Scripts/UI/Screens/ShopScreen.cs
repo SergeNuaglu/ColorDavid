@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -66,7 +65,6 @@ public class ShopScreen : Screen
         _player.MoneyChanged -= OnPlayerMoneyChanged;
         _claimGoodScreen.GoodClamed -= OnGoodChoosed;
 
-
         foreach (var view in _views)
             view.Choosed += OnGoodChoosed;
     }
@@ -79,7 +77,6 @@ public class ShopScreen : Screen
     public override void Close()
     {
         base.Close();
-        //ActiveGoodChanged?.Invoke(ActiveGood);
     }
 
     public void GetGift()

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,7 +19,7 @@ public class ClaimGoodScreen : Screen
     {
         base.Close();
 
-        if(_view != null)
+        if (_view != null)
         {
             _view.Choosed -= OnGoodChoosed;
             Destroy(_view.gameObject);

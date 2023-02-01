@@ -17,7 +17,7 @@ public class PlayScreen : Screen
 
     private void Awake()
     {
-        _levelNumber.text = (SceneManager.GetActiveScene().buildIndex + 1).ToString();     
+        _levelNumber.text = (SceneManager.GetActiveScene().buildIndex + 1).ToString();
     }
 
     private void OnEnable()

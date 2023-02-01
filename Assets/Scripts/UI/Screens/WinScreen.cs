@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -54,5 +53,4 @@ public class WinScreen : Screen
         base.Open();
         StopCoroutine(_showScreenRoutine);
     }
-
 }

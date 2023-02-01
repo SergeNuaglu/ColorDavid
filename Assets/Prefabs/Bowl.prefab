@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3f31689aa5c4b2340a9ba2803c9d9f35, type: 2}
+  - {fileID: 2100000, guid: a73d092e51289874ca82872ced458e49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,8 +128,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.32515073, y: 0.036886692, z: 0.3251506}
-  m_Center: {x: -0.000000059604645, y: 0.12748669, z: 0.00000004967054}
+  m_Size: {x: 0.17117494, y: 0.036886692, z: 0.13145977}
+  m_Center: {x: 0.01109284, y: 0.12748669, z: 0.003918623}
 --- !u!1001 &559684387617342582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -408,7 +408,27 @@ PrefabInstance:
       value: 1.47
       objectReference: {fileID: 0}
     - target: {fileID: 437691632918511742, guid: 3764d18c9a2fef44f8ed26465a259c9a, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437691632918511742, guid: 3764d18c9a2fef44f8ed26465a259c9a, type: 3}
+      propertyPath: lengthInSec
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 437691632918511742, guid: 3764d18c9a2fef44f8ed26465a259c9a, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437691632918511742, guid: 3764d18c9a2fef44f8ed26465a259c9a, type: 3}
+      propertyPath: startDelay.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 437691632918511742, guid: 3764d18c9a2fef44f8ed26465a259c9a, type: 3}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437691632918511742, guid: 3764d18c9a2fef44f8ed26465a259c9a, type: 3}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[1].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 437691632918530364, guid: 3764d18c9a2fef44f8ed26465a259c9a, type: 3}

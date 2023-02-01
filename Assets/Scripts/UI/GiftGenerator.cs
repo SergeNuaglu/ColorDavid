@@ -8,8 +8,9 @@ public class GiftGenerator : MonoBehaviour
     public void ChooseGift()
     {
         float minValue = -1f;
+        float maxValue = _shops.Count - 1;
 
-        float random = Random.Range(minValue, _shops.Count);
+        float random = Random.Range(minValue, maxValue);
 
         for (int i = 0; i < _shops.Count; i++)
         {

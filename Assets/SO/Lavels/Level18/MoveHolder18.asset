@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79092f483e548246a98ed1c67757e37, type: 3}
+  m_Name: MoveHolder18
+  m_EditorClassIdentifier: 
+  _moveCount: 3
+  _bowlMoveColors:
+  - {fileID: 11400000, guid: dbb7efb85ac95aa46b69dbe9112a8438, type: 2}
+  - {fileID: 11400000, guid: 2d82825983550894bb37cfbab41a1f77, type: 2}
+  - {fileID: 11400000, guid: d1a96ebb217e5a3459a28b456b0965ea, type: 2}
+  - {fileID: 11400000, guid: d2f176bf93a35564bbce8a9888f1ab28, type: 2}
+  _bowlMoveArrangements:
+  - {fileID: 11400000, guid: df3dad751b3c7cf4c8ec4ae693434b3b, type: 2}
+  - {fileID: 11400000, guid: 410825b9d98918044ad65fa40d651d0c, type: 2}
+  - {fileID: 11400000, guid: ae344cae0e4f4e24fa749304a9974268, type: 2}
+  - {fileID: 11400000, guid: 00a217ce82d91f244b6eeeba31a6692c, type: 2}

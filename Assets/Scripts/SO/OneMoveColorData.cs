@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "CircleItemData/OneMoveColorData", order = 51)]
+
 public class OneMoveColorData : ScriptableObject
 {
     [SerializeField] private ItemColor[] _itemColors;

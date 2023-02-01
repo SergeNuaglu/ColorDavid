@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private LastLevelData _lastMoney;
-    public int Money { get; private set; } 
+    public int Money { get; private set; }
 
     public event UnityAction<int> MoneyChanged;
 
