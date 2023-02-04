@@ -9,6 +9,8 @@ public class MoveBoard : MonoBehaviour
     [SerializeField] private Circle _circle;
     [SerializeField] private MovesHolder _moveHolder;
 
+    private int _currentMoveCount;
+
     public int MoveCount { get; private set; }
 
     public event UnityAction MovesCompleted;
@@ -26,8 +28,24 @@ public class MoveBoard : MonoBehaviour
 
     private void Start()
     {
-        MoveCount = _moveHolder.MoveCount;
+        _currentMoveCount = _moveHolder.MoveCount;
+        MoveCount = _currentMoveCount;
         ShowMoveCount();
+    }
+
+    public void TrySetCurrentMoveCount()
+    {
+        int minMoveCount = 0;
+
+        if (MoveCount > minMoveCount)
+        {
+            if (_circle.IsLocked() == false)
+            {
+                _currentMoveCount--;
+                MoveCount = _currentMoveCount;
+                ShowMoveCount();
+            }
+        }
     }
 
     private void OnMoveDone()

@@ -69,7 +69,6 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
         TryStopCoroutine(_waitingRoutine);
         _canRotate = false;
         _waitingRoutine = StartCoroutine(Wait());
-        MoveDone?.Invoke();
     }
 
     private float GetDeltaRotation()

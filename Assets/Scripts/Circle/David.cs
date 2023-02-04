@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
@@ -22,7 +22,8 @@ public class David : MonoBehaviour, IColoredItem
     public Transform HammerParent => _hammerParent;
     public Transform GlassesParent => _glassesParent;
 
-    public event UnityAction<Color> ColorExchanging;
+    public event UnityAction<ItemColor> ColorСhanged;
+    public event UnityAction BowlHit;
 
 
     private void OnDisable()
@@ -78,6 +79,7 @@ public class David : MonoBehaviour, IColoredItem
     {
         CurrentColor = newColor;
         _renderer.material.color = CurrentColor.MainColor;
+        ColorСhanged?.Invoke(newColor);
     }
 
     public void HitBowl()
@@ -102,8 +104,8 @@ public class David : MonoBehaviour, IColoredItem
 
     private void OnBowlHit(IColoredItem colorItem)
     {
-        ColorExchanging?.Invoke(colorItem.CurrentColor.MainColor);
         ExchangeColors(colorItem);
+        BowlHit?.Invoke();
     }
 
     private void OnBowlFreezing()

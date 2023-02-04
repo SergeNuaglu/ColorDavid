@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
         foreach (Platform platform in _platforms)
         {
             platform.ColorMatched -= OnColorMatched;
-            platform.ColorExchanged -= OnColorExchanged;
+            platform.David.BowlHit -= OnBowlHit;
         }
 
         if (_waitingRoutine != null)
@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour
     {
         _platforms.Add(platform);
         platform.ColorMatched += OnColorMatched;
-        platform.ColorExchanged += OnColorExchanged;
+        platform.David.BowlHit += OnBowlHit;
     }
 
     public void Play(AudioClip clip)
@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour
         return _isMuted;
     }
 
-    private void OnColorExchanged()
+    private void OnBowlHit()
     {
         Play(_hitBowlSound);
     }
@@ -81,7 +81,7 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator Wait()
     {
-        WaitForSeconds waitingTime = new WaitForSeconds(1f);
+        WaitForSeconds waitingTime = new WaitForSeconds(0.5f);
 
         yield return waitingTime;
         Play(_colorMatchSound);

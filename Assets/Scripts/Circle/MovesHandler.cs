@@ -5,7 +5,8 @@ public class MovesHandler : MonoBehaviour
 {
     [SerializeField] private MovesHolder _moveHolder;
 
-    private List<IColoredItem> _coloredItems = new List<IColoredItem>();
+    private List<IColoredItem> _bowls = new List<IColoredItem>();
+    private List<IColoredItem> _davids = new List<IColoredItem>();
     private List<IMovable> _movableItems = new List<IMovable>();
     private OneMoveColorData _colorData;
 
@@ -13,7 +14,10 @@ public class MovesHandler : MonoBehaviour
 
     public void AddColoredItem(IColoredItem item)
     {
-        _coloredItems.Add(item);
+        if (item is Bowl)
+            _bowls.Add(item);
+        else if (item is David)
+            _davids.Add(item);
     }
 
     public void AddMovableItem(IMovable item)
@@ -29,7 +33,8 @@ public class MovesHandler : MonoBehaviour
         Vector3 newPosition;
         int counter = 0;
 
-        ChangeColors(_nextMove);
+        ChangeColors(_nextMove, _bowls, _moveHolder.BowlMoveColors);
+        ChangeColors(_nextMove, _davids, _moveHolder.DavidMoveColors);
         nextArrangement = _moveHolder.BowlMoveArrangements[_nextMove].Data;
 
         for (int i = 0; i < nextArrangement.Count; i++)
@@ -53,7 +58,7 @@ public class MovesHandler : MonoBehaviour
 
         foreach (var platform in platforms)
         {
-            if (platform.IsSameColorWithDavid)
+            if (platform.CheckColorMatch())
                 matchCounter++;
         }
 
@@ -61,22 +66,15 @@ public class MovesHandler : MonoBehaviour
             return true;
 
         return false;
-        ;
     }
 
-    private void ChangeColors(int nextMoveNumber)
+    private void ChangeColors(int nextMoveNumber, List<IColoredItem> coloredItems, IReadOnlyList<OneMoveColorData> moveColorData)
     {
-        SetColorData(nextMoveNumber);
+        _colorData = moveColorData[nextMoveNumber];
 
-        for (int i = 0; i < _coloredItems.Count; i++)
-            _coloredItems[i].SetItemColor(_colorData.ItemColors[i]);
+        for (int i = 0; i < coloredItems.Count; i++)
+            coloredItems[i].SetItemColor(_colorData.ItemColors[i]);
     }
-
-    private void SetColorData(int nextMoveNumber)
-    {
-        _colorData = _moveHolder.BowlMoveColors[nextMoveNumber];
-    }
-
 }
 
 public interface IMovable

@@ -6,7 +6,7 @@ public class Circle : MonoBehaviour
 {
     [SerializeField] private float _radius;
     [SerializeField] private float _arcAngle;
-    [SerializeField] private int _reward;
+    [SerializeField] private int _reward = 70;
     [SerializeField] private Player _player;
     [SerializeField] private MovesHandler _moveHandler;
 
@@ -34,6 +34,7 @@ public class Circle : MonoBehaviour
     {
         _platforms.Add(newPlatform);
         newPlatform.SetAngleOnCircle();
+        _moveHandler.AddColoredItem(newPlatform.David);
     }
 
     public void SetStep(float step)

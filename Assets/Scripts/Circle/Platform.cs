@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Platform : CircleItem
@@ -8,23 +8,28 @@ public class Platform : CircleItem
     [SerializeField] private ItemColor _defaultColor;
 
     private ItemColor _secretColor;
+
     public David David => _david;
     public float AngleOnCircle { get; private set; }
     public bool IsSecret { get; private set; }
-    public bool IsSameColorWithDavid { get; private set; }
 
     public event UnityAction ColorMatched;
-    public event UnityAction ColorExchanged;
+
+    private void OnEnable()
+    {
+        David.ColorСhanged += OnColorChanged;
+        David.BowlHit += OnBowlHit;
+    }
 
     private void OnDisable()
     {
-        David.ColorExchanging -= OnColorExchanging;
+        David.ColorСhanged -= OnColorChanged;
+        David.BowlHit -= OnBowlHit;
         Circle.AllColorsMatched -= OnAllColorsMatched;
     }
 
     private void Start()
     {
-        David.ColorExchanging += OnColorExchanging;
         Circle.AllColorsMatched += OnAllColorsMatched;
 
         if (IsSecret)
@@ -50,28 +55,31 @@ public class Platform : CircleItem
         TurnToCenter(AngleOnCircle);
     }
 
-    private void OnColorExchanging(Color color)
+    public bool CheckColorMatch()
     {
-        HitEffect.PlayEffect(color);
+        if (David.CurrentColor == CurrentColor)
+            return true;
 
-        if (IsSecret && color == _secretColor.MainColor)
+        return false;
+    }
+
+    private void OnColorChanged(ItemColor color)
+    {
+        if (IsSecret && color == _secretColor)
         {
             SetTexture();
             SetItemColor(_secretColor);
             IsSecret = false;
-            IsSameColorWithDavid = true;
         }
-        else if (color == CurrentMainColor)
-        {
-            IsSameColorWithDavid = true;
-            ColorMatched?.Invoke();
-        }
-        else
-        {
-            IsSameColorWithDavid = false;
-        }
+    }
 
-        ColorExchanged?.Invoke();
+    private void OnBowlHit()
+    {
+        HitEffect.PlayEffect(David.CurrentColor.MainColor);
+
+        if (CheckColorMatch())
+            ColorMatched?.Invoke();
+
     }
 
     private void OnAllColorsMatched()

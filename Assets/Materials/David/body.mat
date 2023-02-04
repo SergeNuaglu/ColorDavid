@@ -298,7 +298,7 @@ Material:
     - _ZWrite: 1
     - _eyedist: 0.441
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _ColorDim: {r: 1, g: 1, b: 1, a: 0.5254902}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}

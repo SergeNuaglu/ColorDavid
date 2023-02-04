@@ -11,7 +11,7 @@ public class Hammer : Good
         if (other.TryGetComponent<Bowl>(out Bowl bowl))
         {
             if (bowl.CurrentColor.CanFreeze)
-            {               
+            {
                 BowlIsFreezing?.Invoke();
             }
             else if (bowl.CurrentColor.CanPaint)

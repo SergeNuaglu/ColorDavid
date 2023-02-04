@@ -18,6 +18,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6607947aca5b6641a86c17d6851477f, type: 2}
   - {fileID: 11400000, guid: be9e510547ec9854ba6c8a51a1d7e4b1, type: 2}
   - {fileID: 11400000, guid: 5c7303aa9003412419fba4a5b6c07b98, type: 2}
+  _davidMoveColors:
+  - {fileID: 11400000, guid: 5bc35e5554c08ce45afdbac0719c8ab8, type: 2}
+  - {fileID: 11400000, guid: 4102fb31244fee7439f8d8f2bcff980e, type: 2}
+  - {fileID: 11400000, guid: cca945381ab10534b9db3d657e812cea, type: 2}
+  - {fileID: 11400000, guid: 4c7ece4dc6eeed247aa188a98116e54d, type: 2}
   _bowlMoveArrangements:
   - {fileID: 11400000, guid: 8fc33caa1ca9ca0419728f14ef3a2724, type: 2}
   - {fileID: 11400000, guid: aa2298910e932444d86d39a5780e7127, type: 2}

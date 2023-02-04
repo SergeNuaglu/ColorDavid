@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,8 @@ public class WinScreen : Screen
     [SerializeField] private ParticleSystem _confettiEffect;
     [SerializeField] private LastLevelData _passedLevelNumber;
     [SerializeField] private Gift _gift;
-    [SerializeField] FullGiftScreen _fullGiftScreen;
+    [SerializeField] private FullGiftScreen _fullGiftScreen;
+    [SerializeField] private TMP_Text _winSign;
 
     private Coroutine _showScreenRoutine;
     private int _currentLevelBuildIndex;
@@ -33,6 +35,7 @@ public class WinScreen : Screen
         WaitForSeconds waitingTime = new WaitForSeconds(1.5f);
         _passedLevelNumber.Set(++_currentLevelBuildIndex);
         _confettiEffect.Play();
+        SetRandomWinSign();
         _showScreenRoutine = StartCoroutine(ShowScreen(waitingTime));
     }
 
@@ -41,6 +44,23 @@ public class WinScreen : Screen
         base.Close();
         _confettiEffect.Stop();
         _gift.SetLastFullness();
+    }
+
+    private void SetRandomWinSign()
+    {
+        string[] signs = { "Great", "Nicely Done", "Awesome", "You've done well" };
+        float minValue = -1f;
+        float maxValue = signs.Length - 1;
+        float random = Random.Range(minValue, maxValue);
+
+        for (int i = 0; i < signs.Length; i++)
+        {
+            if (random <= i)
+            {
+                _winSign.text = signs[i];
+                break;
+            }
+        }
     }
 
     private IEnumerator ShowScreen(WaitForSeconds waitingTime)

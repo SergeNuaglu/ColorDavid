@@ -32,8 +32,8 @@ public class Gift : MonoBehaviour
     {
         int valuePerLevel;
         int minValue = 0;
-        int minValuePerLevel = 100;
-        int maxValuePerLevel = 101;
+        int minValuePerLevel = 17;
+        int maxValuePerLevel = 25;
 
         valuePerLevel = Random.Range(minValuePerLevel, maxValuePerLevel);
 
