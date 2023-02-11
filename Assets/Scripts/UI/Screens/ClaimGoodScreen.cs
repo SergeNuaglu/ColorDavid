@@ -10,11 +10,6 @@ public class ClaimGoodScreen : Screen
 
     public event UnityAction<Good> GoodClamed;
 
-    private void Awake()
-    {
-        Close();
-    }
-
     public override void Close()
     {
         base.Close();

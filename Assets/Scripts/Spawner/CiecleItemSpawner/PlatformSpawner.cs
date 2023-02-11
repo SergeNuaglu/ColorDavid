@@ -5,9 +5,10 @@ public class PlatformSpawner : CircleItemSpawner
 {
     [SerializeField] private float _bawlDistance;
     [SerializeField] private float _positionY;
-    [SerializeField] private List<ShopScreen> _shops;
+    [SerializeField] private List<Shop> _shops;
     [SerializeField] private AudioManager _audioManager;
-    [SerializeField] private ScreensHandler _screenHandler;
+    [SerializeField] private Game _game;
+    [SerializeField] private Player _player;
 
     private OneMoveColorData _platformColorData;
     private OneMoveColorData _davidColorData;
@@ -37,9 +38,10 @@ public class PlatformSpawner : CircleItemSpawner
                 if (SpawnData.SecretPlatformArrangement.Data[Counter])
                     platform.BecameSecret();
 
+                platform.Init(_player);
                 platform.SetItemColor(_platformColorData.ItemColors[Counter]);
                 platform.David.SetItemColor(_davidColorData.ItemColors[Counter]);
-                platform.David.Init(_screenHandler);
+                platform.David.Init(_game);
                 InitGoodSpawners(platform.David);
                 _audioManager.Init(platform);
                 Circle.AddPlatform(platform);

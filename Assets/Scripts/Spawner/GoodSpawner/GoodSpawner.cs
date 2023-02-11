@@ -5,7 +5,7 @@ public abstract class GoodSpawner : MonoBehaviour
 {
     [SerializeField] private David _david;
 
-    private List<ShopScreen> _shops = new List<ShopScreen>();
+    private List<Shop> _shops = new List<Shop>();
 
     protected Good SpawnedGood;
 
@@ -17,7 +17,7 @@ public abstract class GoodSpawner : MonoBehaviour
             shop.ActiveGoodChanged -= OnActiveGoodChoosed;
     }
 
-    public void Init(ShopScreen shop)
+    public void Init(Shop shop)
     {
         _shops.Add(shop);
         shop.ActiveGoodChanged += OnActiveGoodChoosed;

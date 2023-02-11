@@ -1,25 +1,15 @@
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class LevelsScreen : Screen
+public class LevelsScreen : ScrollViewScreen
 {
-    [SerializeField] private Button _exitButton;
-    [SerializeField] private LevelView _template;
-    [SerializeField] private GameObject _itemContainer;
-
-    private int _levelCount; private int _currentLevelBuildIndex;
+    private int _levelCount;
+    private int _currentLevelBuildIndex;
     private List<LevelView> _levelViews = new List<LevelView>();
 
     public event UnityAction<int> LevelChoosed;
     public event UnityAction ExitButtonClicked;
-
-    private void OnEnable()
-    {
-        _exitButton.onClick.AddListener(() => OnButtonClicked(ExitButtonClicked));
-    }
 
     private void OnDisable()
     {
@@ -27,15 +17,16 @@ public class LevelsScreen : Screen
         {
             view.LevelChoosed -= OnLevelChoosed;
         }
-
-        _exitButton.onClick.RemoveAllListeners();
     }
 
     private void Start()
     {
         _levelCount = SceneManager.sceneCountInBuildSettings;
         _currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
-
+        FillScrollView();
+    }
+    protected override void FillScrollView()
+    {
         for (int i = 0; i < _levelCount; i++)
         {
             AddLevel(i);
@@ -46,10 +37,14 @@ public class LevelsScreen : Screen
 
     private void AddLevel(int levelNumber)
     {
-        var view = Instantiate(_template, _itemContainer.transform);
-        view.Init(_currentLevelBuildIndex, levelNumber);
-        view.Render();
-        _levelViews.Add(view);
+        var view = Instantiate(Template, ItemContainer.transform);
+
+        if (view.TryGetComponent<LevelView>(out LevelView levelView))
+        {
+            levelView.Init(_currentLevelBuildIndex, levelNumber);
+            levelView.Render();
+            _levelViews.Add(levelView);
+        }
     }
 
     private void SubscribeToLevelButtonClick()

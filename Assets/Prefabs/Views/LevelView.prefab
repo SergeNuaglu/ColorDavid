@@ -137,11 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201c86d101ca4ab4085cd30a95706c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lock: {fileID: 5453517787602353923}
   ActivityStateFrame: {fileID: 4777438569767606245}
-  ItemButton: {fileID: 9026550142901025028}
   _levelNumber: {fileID: 2214314267413556288}
-  _passedLevelNumber: {fileID: 11400000, guid: 6af23ae1e8b04cd4ea69a6e602083070, type: 2}
+  _lock: {fileID: 5453517787602353923}
+  _levelButton: {fileID: 9026550142901025028}
 --- !u!1 &1812798515022628896
 GameObject:
   m_ObjectHideFlags: 0

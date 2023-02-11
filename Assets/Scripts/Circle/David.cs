@@ -14,7 +14,7 @@ public class David : MonoBehaviour, IColoredItem
     private Glasses _glasses;
     private Renderer _renderer;
     private Animator _animator;
-    private ScreensHandler _screenHandler;
+    private Game _game;
 
     public Hammer Hammer => _hammer;
     public ItemColor CurrentColor { get; private set; }
@@ -30,7 +30,7 @@ public class David : MonoBehaviour, IColoredItem
     {
         _hammer.BowlHit -= OnBowlHit;
         _hammer.BowlIsFreezing -= OnBowlFreezing;
-        _screenHandler.ScreensClosed -= OnScreenClosed;
+        _game.GameStarted -= OnScreenClosed;
     }
 
     private void Awake()
@@ -39,10 +39,10 @@ public class David : MonoBehaviour, IColoredItem
         _animator = GetComponent<Animator>();
     }
 
-    public void Init(ScreensHandler screenHandler)
+    public void Init(Game game)
     {
-        _screenHandler = screenHandler;
-        _screenHandler.ScreensClosed += OnScreenClosed;
+        _game = game;
+        _game.GameStarted += OnScreenClosed;
     }
 
     public void SetHammer(Hammer hammer)

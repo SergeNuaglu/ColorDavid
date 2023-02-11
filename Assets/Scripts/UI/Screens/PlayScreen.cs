@@ -1,4 +1,4 @@
-﻿using TMPro;
+﻿ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -16,7 +16,7 @@ public class PlayScreen : Screen
     public event UnityAction RestartButtonClicked;
     public event UnityAction StepForwardButtonClicked;
 
-    private void Awake()
+    protected override void Awake()
     {
         _levelNumber.text = (SceneManager.GetActiveScene().buildIndex + 1).ToString();
     }
@@ -33,7 +33,19 @@ public class PlayScreen : Screen
     {
         _homeButton.onClick.RemoveAllListeners();
         _restartButton.onClick.RemoveAllListeners();
-        _stepForwardButton.onClick.RemoveAllListeners();
+        _stepForwardButton.onClick.RemoveListener(OnStepForwardButtonClicked);
+    }
+
+    public override void Open()
+    {
+        base.Open();
+        Time.timeScale = 1.0f;
+    }
+
+    public override void Close()
+    {
+        base.Close();
+        Time.timeScale = 0f;
     }
 
     protected void OnStepForwardButtonClicked()

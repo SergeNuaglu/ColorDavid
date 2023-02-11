@@ -5,6 +5,10 @@ public abstract class Screen : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _canvasGroup;
 
+    protected virtual void Awake()
+    {
+        Close();
+    }
     public virtual void Open()
     {
         _canvasGroup.alpha = 1.0f;

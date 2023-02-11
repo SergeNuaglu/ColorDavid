@@ -1,56 +1,28 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class ShopScreen : Screen
+public class ShopScreen : ScrollViewScreen
 {
     [SerializeField] private List<Good> _goods;
     [SerializeField] private Button _sellButton;
     [SerializeField] private Button _addMoneyButton;
-    [SerializeField] private Button _otherGoodsButton;
-    [SerializeField] private Button _exitButton;
-    [SerializeField] private GameObject _itemContainer;
-    [SerializeField] private GoodView _tamplate;
-    [SerializeField] private int _precePerOneGood;
     [SerializeField] private Player _player;
-    [SerializeField] private ShopScreen _otherGoodsScreen;
     [SerializeField] private ClaimGoodScreen _claimGoodScreen;
+    [SerializeField] private Shop _shop;
 
-    private List<Good> _unpurchasedGoods = new List<Good>();
-    private List<Good> _purchasedGoods = new List<Good>();
     private List<GoodView> _views = new List<GoodView>();
 
-    public IReadOnlyList<Good> PurchasedGoods => _purchasedGoods;
-    public Good ActiveGood { get; private set; }
-
     public event UnityAction AddMoneyButtonClicked;
-    public event UnityAction ExitButtonClicked;
-    public event UnityAction<Good> ActiveGoodChanged;
-
-    private void Awake()
-    {
-        for (int i = 0; i < _goods.Count; i++)
-        {
-            AddGoodToScrollView(_goods[i]);
-
-            if (_goods[i].IsBuyed == false)
-                _unpurchasedGoods.Add(_goods[i]);
-            else
-                _purchasedGoods.Add(_goods[i]);
-
-            if (_goods[i].IsActive)
-                ActiveGood = _goods[i];
-        }
-    }
 
     private void OnEnable()
     {
         _sellButton.onClick.AddListener(OnSellButtonClicked);
-        _otherGoodsButton.onClick.AddListener(OnOtherGoodsButtonClicked);
         _addMoneyButton.onClick.AddListener(() => OnButtonClicked(AddMoneyButtonClicked));
-        _exitButton.onClick.AddListener(() => OnButtonClicked(ExitButtonClicked));
         _player.MoneyChanged += OnPlayerMoneyChanged;
+        _shop.GiftGiven += OnGiftGiven;
         _claimGoodScreen.GoodClamed += OnGoodChoosed;
 
         foreach (var view in _views)
@@ -59,11 +31,10 @@ public class ShopScreen : Screen
 
     private void OnDisable()
     {
-        _sellButton.onClick.RemoveListener(OnSellButtonClicked);
         _addMoneyButton.onClick.RemoveAllListeners();
-        _exitButton.onClick.RemoveAllListeners();
         _player.MoneyChanged -= OnPlayerMoneyChanged;
         _claimGoodScreen.GoodClamed -= OnGoodChoosed;
+        _shop.GiftGiven -= OnGiftGiven;
 
         foreach (var view in _views)
             view.Choosed += OnGoodChoosed;
@@ -71,31 +42,38 @@ public class ShopScreen : Screen
 
     private void Start()
     {
-        ActiveGoodChanged?.Invoke(ActiveGood);
+        FillScrollView();
+
+        if (_shop.ActiveGood == null)
+            _shop.MakeDefaultGoodActive();
     }
 
-    public override void Close()
+    private void OnGiftGiven(Good good)
     {
-        base.Close();
+       _claimGoodScreen.ShowGood(good);
     }
 
-    public void GetGift()
+    protected override void FillScrollView()
     {
-        Good good;
-
-        if (_unpurchasedGoods.Count > 0)
+        for (int i = 0; i < _goods.Count; i++)
         {
-            good = GetRandomGood();
-            good.Buy();
-            _unpurchasedGoods.Remove(good);
-            _purchasedGoods.Add(good);
-            _claimGoodScreen.ShowGood(good);
+            AddGoodToScrollView(_goods[i]);
+
+            if (_goods[i].IsBought == false)
+                _shop.AddUnpurchasedGood(_goods[i]);
+            else
+                _shop.AddPurchasedGood(_goods[i]);
         }
+    }
+
+    private void OnGoodChoosed(Good good)
+    {
+        _shop.ChangeActiveGood(good);
     }
 
     private void OnPlayerMoneyChanged(int money)
     {
-        if (money < _precePerOneGood)
+        if (money < _shop.PricePerOneGood)
             _sellButton.interactable = false;
         else
             _sellButton.interactable = true;
@@ -103,69 +81,24 @@ public class ShopScreen : Screen
 
     private void AddGoodToScrollView(Good good)
     {
-        GoodView view = Instantiate(_tamplate, _itemContainer.transform);
-        view.Init(good);
-        view.Render();
-        _views.Add(view);
+        GoodView view;
+
+        if (Template.TryGetComponent<GoodView>(out GoodView goodView))
+        {
+            view = Instantiate(goodView, ItemContainer.transform);
+            view.Init(good);
+            view.Render();
+            _views.Add(view);
+        }
     }
 
     private void OnSellButtonClicked()
     {
-        Good good = GetRandomGood();
+        Good good;
 
-        if (_unpurchasedGoods.Count > 0)
-            if (TrySellGood(good))
+        if (_shop.UnpurchasedGoods.Count > 0)
+            if (_shop.TrySellGood(out good))
                 _claimGoodScreen.ShowGood(good);
-    }
-
-    private void OnOtherGoodsButtonClicked()
-    {
-        _otherGoodsScreen.Open();
-        this.Close();
-    }
-
-    private void OnGoodChoosed(Good good)
-    {
-        foreach (var purchasedGood in PurchasedGoods)
-        {
-            if (purchasedGood.IsActive)
-                purchasedGood.SwitchActive();
-        }
-
-        good.SwitchActive();
-        ActiveGood = good;
-        ActiveGoodChanged?.Invoke(ActiveGood);
-    }
-
-    private bool TrySellGood(Good good)
-    {
-        bool isSelled = false;
-
-        if (good != null && _precePerOneGood <= _player.Money)
-        {
-            _player.BuyGood(_precePerOneGood);
-            good.Buy();
-            _unpurchasedGoods.Remove(good);
-            _purchasedGoods.Add(good);
-            isSelled = true;
-        }
-
-        return isSelled;
-    }
-
-    private Good GetRandomGood()
-    {
-        float minValue = -1f;
-
-        float random = Random.Range(minValue, _unpurchasedGoods.Count);
-
-        for (int i = 0; i < _unpurchasedGoods.Count; i++)
-        {
-            if (random <= i)
-                return _unpurchasedGoods[i];
-        }
-
-        return null;
     }
 }
 

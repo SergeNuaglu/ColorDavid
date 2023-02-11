@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,8 +9,10 @@ public class MoveBoard : MonoBehaviour
     [SerializeField] private BowlCircleRotator _circleRotator;
     [SerializeField] private Circle _circle;
     [SerializeField] private MovesHolder _moveHolder;
+    [SerializeField] private SDK _sdk;
 
     private int _currentMoveCount;
+    private Coroutine _waitCircleUnlockJob;
 
     public int MoveCount { get; private set; }
 
@@ -41,9 +44,16 @@ public class MoveBoard : MonoBehaviour
         {
             if (_circle.IsLocked() == false)
             {
+                _sdk.ShowVideoForMoveForward();
+                _circle.MakeForwardMove();
                 _currentMoveCount--;
                 MoveCount = _currentMoveCount;
                 ShowMoveCount();
+            }
+            else
+            {
+                StopCoroutine(_waitCircleUnlockJob);
+                _waitCircleUnlockJob = StartCoroutine(WaitForCircleUnlock());
             }
         }
     }
@@ -70,5 +80,13 @@ public class MoveBoard : MonoBehaviour
             MoveCount = minMoveCount;
 
         _move.text = MoveCount.ToString();
+    }
+
+    private IEnumerator WaitForCircleUnlock()
+    {
+        while (_circle.IsLocked())
+            yield return null;
+
+        TrySetCurrentMoveCount();
     }
 }

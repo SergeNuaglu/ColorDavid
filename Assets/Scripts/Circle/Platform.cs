@@ -9,6 +9,8 @@ public class Platform : CircleItem
 
     private ItemColor _secretColor;
 
+    private Player _player;
+
     public David David => _david;
     public float AngleOnCircle { get; private set; }
     public bool IsSecret { get; private set; }
@@ -44,6 +46,11 @@ public class Platform : CircleItem
         }
     }
 
+    public void Init(Player player)
+    {
+        _player = player;
+    }
+
     public void BecameSecret()
     {
         IsSecret = true;
@@ -75,11 +82,16 @@ public class Platform : CircleItem
 
     private void OnBowlHit()
     {
+        int minReward = 15;
+        int maxReward = 26;
+
         HitEffect.PlayEffect(David.CurrentColor.MainColor);
 
         if (CheckColorMatch())
+        {
             ColorMatched?.Invoke();
-
+            _player.AddScore(Random.Range(minReward, maxReward));
+        }
     }
 
     private void OnAllColorsMatched()

@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 465484350}
   - component: {fileID: 465484352}
   - component: {fileID: 465484351}
+  - component: {fileID: 664621875528309803}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -188,19 +189,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Claim
-
-'
+  m_text: Claim
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 173b8a2424558454cb9f1c75e4064e02, type: 2}
-  m_sharedMaterial: {fileID: 5747869673306041273, guid: 173b8a2424558454cb9f1c75e4064e02, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
+  m_sharedMaterial: {fileID: 942589445191879500, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281777407
-  m_fontColor: {r: 1, g: 0.73710686, b: 0.2113207, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -259,6 +258,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &664621875528309803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465484349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Claim
+  FallbackText: 'Claim
+
+'
 --- !u!1 &8350086117274935831
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,10 +506,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decb69dd7eb0e1b468e805307872bd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lock: {fileID: 8350086117484481336}
   ActivityStateFrame: {fileID: 8350086117274935829}
-  ItemButton: {fileID: 247947836}
   _icon: {fileID: 8350086117991404322}
+  _getButton: {fileID: 247947836}
+  _lock: {fileID: 8350086117484481336}
 --- !u!1 &8350086117991404324
 GameObject:
   m_ObjectHideFlags: 0

@@ -250,10 +250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decb69dd7eb0e1b468e805307872bd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lock: {fileID: 1547852268502692300}
   ActivityStateFrame: {fileID: 1547852268561242337}
-  ItemButton: {fileID: 1547852268129840719}
   _icon: {fileID: 1547852267929709014}
+  _getButton: {fileID: 1547852268129840719}
+  _lock: {fileID: 1547852268502692300}
 --- !u!1 &1547852268502692302
 GameObject:
   m_ObjectHideFlags: 0

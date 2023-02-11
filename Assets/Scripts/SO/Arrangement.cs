@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +8,15 @@ public class Arrangement : ScriptableObject
 {
     [SerializeField] private bool[] _data;
 
-    private int _maxLength;
-
     public IReadOnlyList<bool> Data => _data;
 
     public void SetLenght(int length)
     {
-        _maxLength = length;
-        _data = new bool[length];
+        Array.Resize(ref _data, length);
+    }
+
+    public void SetNewData(int index, bool newData)
+    {
+        _data[index] = newData;
     }
 }
