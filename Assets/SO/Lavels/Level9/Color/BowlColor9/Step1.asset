@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Step1
   m_EditorClassIdentifier: 
   _itemColors:
+  - {fileID: 11400000, guid: 3edeb934eef44894eb9037adaa9a6d70, type: 2}
   - {fileID: 11400000, guid: 03845ad81195cfa40bd12bae66367ac9, type: 2}
-  - {fileID: 11400000, guid: 03845ad81195cfa40bd12bae66367ac9, type: 2}
+  - {fileID: 11400000, guid: e0a8d9387af9dcb449a25dd6b19a7c7f, type: 2}
   - {fileID: 11400000, guid: 03845ad81195cfa40bd12bae66367ac9, type: 2}

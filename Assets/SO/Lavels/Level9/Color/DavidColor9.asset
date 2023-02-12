@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: DavidColor9
   m_EditorClassIdentifier: 
   _itemColors:
-  - {fileID: 11400000, guid: e0a8d9387af9dcb449a25dd6b19a7c7f, type: 2}
-  - {fileID: 11400000, guid: d0a994918799b2e458d840d9369f825a, type: 2}
+  - {fileID: 11400000, guid: bef149db21e4810439319a029c913533, type: 2}
   - {fileID: 11400000, guid: 969ee6af6241aa245979a8ac59ae6312, type: 2}
-  - {fileID: 11400000, guid: 9ab1a50205b057447bb863adfe66e8ff, type: 2}
+  - {fileID: 11400000, guid: 03845ad81195cfa40bd12bae66367ac9, type: 2}

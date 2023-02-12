@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveCount: 3
   _bowlMoveColors:
-  - {fileID: 11400000, guid: 2cd6bd71e9bf26d4aa2d801b832102cd, type: 2}
-  - {fileID: 11400000, guid: fec95a4a4714b9742949519c803718ea, type: 2}
-  - {fileID: 11400000, guid: 0f284d69a634d804db61389e06445364, type: 2}
-  - {fileID: 11400000, guid: f10d0cfebcefbf8428e84a2bee14ccbf, type: 2}
+  - {fileID: 11400000, guid: 27bff9568dfe6c0468332d2e6b4b9902, type: 2}
+  - {fileID: 11400000, guid: b1a36162252cc634185c75b8931ecf3e, type: 2}
+  - {fileID: 11400000, guid: 536a35a7641c95f4683bd7443ad6e135, type: 2}
+  - {fileID: 11400000, guid: 72730e47702f23c49a81d57b4b722485, type: 2}
   _davidMoveColors:
-  - {fileID: 11400000, guid: d873b03104f02dd4ca947d7aa2703bdd, type: 2}
-  - {fileID: 11400000, guid: e58b764cfea4ce044b41919c75b5adad, type: 2}
-  - {fileID: 11400000, guid: d8c404f0087e25541b6c440f5630ae4d, type: 2}
-  - {fileID: 11400000, guid: 43fbdb83dda513348b2eef92ffb6311d, type: 2}
+  - {fileID: 11400000, guid: ee6d37df8dc6fe649b598ddfab8f6cfc, type: 2}
+  - {fileID: 11400000, guid: 69bd4df35a91fc24eac8f22e8381efb3, type: 2}
+  - {fileID: 11400000, guid: e1d22b27dbe381149947d05f826c7608, type: 2}
+  - {fileID: 11400000, guid: 6ef96ed2a8042514c8fc365f064811c2, type: 2}
   _bowlMoveArrangements:
-  - {fileID: 11400000, guid: 85dfd681ea2be494d88d9b3e3ce8d61d, type: 2}
-  - {fileID: 11400000, guid: 50c0d2a1ec6792b44926e33695305d95, type: 2}
-  - {fileID: 11400000, guid: 504fa7efb6a56824da59b3d8c88cff65, type: 2}
-  - {fileID: 11400000, guid: a0b10f3c1d765f74d9f2a8bfc1b74a19, type: 2}
+  - {fileID: 11400000, guid: f0759d47f723b5845a3217ba9f722785, type: 2}
+  - {fileID: 11400000, guid: 6ba55a31f6efd214da083666f7996956, type: 2}
+  - {fileID: 11400000, guid: 0d07bf266ec59a84c80c64ac5f262062, type: 2}
+  - {fileID: 11400000, guid: 346441546bddd274ab78b03d87ffba59, type: 2}

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a158de7c04b0c947a5d41fe9527b470, type: 3}
   m_Name: SpawnData13
   m_EditorClassIdentifier: 
-  _circleStepCount: 7
-  _platformArrangement: {fileID: 11400000, guid: 0b4a265504c921d4e9a999f6831a4ec3, type: 2}
-  _secretPlatformArrangement: {fileID: 11400000, guid: 7e43fe0ac7b9f0c468bd5eafd1a30963, type: 2}
-  _platformColorData: {fileID: 11400000, guid: c4e6cafb3ec335244b2aa95050fea230, type: 2}
-  _davidColorData: {fileID: 11400000, guid: bb15afc80ea56a247a98c431be1ff0d5, type: 2}
-  _platformCount: 3
+  _circleStepCount: 6
+  _platformArrangement: {fileID: 11400000, guid: 18b7e2e6c4e82c44cb8b3cc8982ba965, type: 2}
+  _secretPlatformArrangement: {fileID: 11400000, guid: 7fb64efcd35d5b2459fedbf075633944, type: 2}
+  _platformColorData: {fileID: 11400000, guid: a315d37659a073a4ba35303ece76d58f, type: 2}
+  _davidColorData: {fileID: 11400000, guid: 01d6de6a77049ef41b1c49efd5fb8b1c, type: 2}
+  _platformCount: 4
   _bowlCount: 3
-  _moveHolder: {fileID: 11400000, guid: b6ae149b44518234583d972074858b72, type: 2}
+  _moveHolder: {fileID: 11400000, guid: 898fcb487866c84439bb7c824104346a, type: 2}
