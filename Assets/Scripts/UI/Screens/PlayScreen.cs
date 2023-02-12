@@ -15,6 +15,7 @@ public class PlayScreen : Screen
     public event UnityAction HomeButtonClicked;
     public event UnityAction RestartButtonClicked;
     public event UnityAction StepForwardButtonClicked;
+    public event UnityAction Opened;
 
     protected override void Awake()
     {
@@ -38,6 +39,7 @@ public class PlayScreen : Screen
     public override void Open()
     {
         base.Open();
+        Opened?.Invoke();
         Time.timeScale = 1.0f;
     }
 

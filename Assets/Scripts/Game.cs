@@ -1,4 +1,5 @@
 using Agava.YandexGames;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,6 +44,7 @@ public class Game : MonoBehaviour
         _winScreen.NextLevelButtonClicked += OnNextButtonClicked;
         _playScreen.HomeButtonClicked += OnHomeButtonClicked;
         _playScreen.RestartButtonClicked += OnRestartButtonClicked;
+        _playScreen.Opened += OnPlayScreenOpened;
         _homeScreen.LeaderboardButtonClicked += OnLeaderboardButtonClicked;
         _levelsScreen.LevelChoosed += OnLevelChoosed;
         _loadingScreen.PlayButtonClicked += OnPlayButtonClicked;
@@ -55,10 +57,16 @@ public class Game : MonoBehaviour
         _moveBoard.MovesCompleted -= OnMovesComleted;
         _playScreen.HomeButtonClicked -= OnHomeButtonClicked;
         _playScreen.RestartButtonClicked -= OnRestartButtonClicked;
+        _playScreen.Opened -= OnPlayScreenOpened;
         _homeScreen.LeaderboardButtonClicked -= OnLeaderboardButtonClicked;
         _levelsScreen.LevelChoosed -= OnLevelChoosed;
         _loadingScreen.PlayButtonClicked -= OnPlayButtonClicked;
         _sdk.Initialized -= OnSDKInitialized;
+    }
+
+    private void OnPlayScreenOpened()
+    {
+        GameStarted?.Invoke();
     }
 
     private void OnLeaderboardButtonClicked()
