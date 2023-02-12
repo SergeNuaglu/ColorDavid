@@ -6,7 +6,7 @@ public abstract class Good : MonoBehaviour
 {
     [SerializeField] private Sprite _icon;
     [SerializeField] private bool _isDefault;
-    [SerializeField]private bool _isBought;
+    [SerializeField] private bool _isBought;
 
     private bool _isActive;
     private const string ActiveKey = nameof(ActiveKey);
@@ -20,17 +20,24 @@ public abstract class Good : MonoBehaviour
 
     public event UnityAction Bought;
     public event UnityAction ActivityChanged;
+    public event UnityAction Tested;
 
     private void Awake()
     {
-        _isBought = RestoreConditionData(gameObject.name + BoughtKey); 
+        _isBought = RestoreConditionData(gameObject.name + BoughtKey);
         _isActive = RestoreConditionData(gameObject.name + ActiveKey);
+        Tested += Test;
 
         if (_isDefault)
             _isBought = true;
 
         if (IsBought == false)
             _isActive = false;
+    }
+
+    private void Test()
+    {
+        Instantiate(Icon);
     }
 
     public void Buy()

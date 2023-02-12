@@ -25,7 +25,6 @@ public class PlayScreen : Screen
     {
         _homeButton.onClick.AddListener(() => OnButtonClicked(HomeButtonClicked));
         _restartButton.onClick.AddListener(() => OnButtonClicked(RestartButtonClicked));
-        _stepForwardButton.onClick.AddListener(() => OnButtonClicked(StepForwardButtonClicked));
         _stepForwardButton.onClick.AddListener(OnStepForwardButtonClicked);
     }
 

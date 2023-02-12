@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     public void AddMoney(int money)
     {
         _money += money;
-        MoneyChanged?.Invoke(money);
+        MoneyChanged?.Invoke(_money);
         PlayerPrefs.SetInt(MoneyKey, Money);
     }
 

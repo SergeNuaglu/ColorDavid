@@ -8,11 +8,9 @@ public class SDK : MonoBehaviour
     [SerializeField] private GiftGenerator _giftGenerator;
     [SerializeField] private WinScreen _winScreen;
 
-    private bool _isVideoForGiftShowed;
+    private bool _isVideoForRewardShowed;
 
     public event Action Initialized;
-    public event Action AdClosed;
-    public event Action AdOpen;
 
     private void Awake()
     {
@@ -20,7 +18,7 @@ public class SDK : MonoBehaviour
     }
 
     private void OnEnable()
-    {
+    { 
         _giftGenerator.GiftChoosing += OnGiftChoosing;
         _winScreen.NextLevelButtonClicked += OnNextButtonClicked;
     }
@@ -31,6 +29,22 @@ public class SDK : MonoBehaviour
         _winScreen.NextLevelButtonClicked -= OnNextButtonClicked;
     }
 
+    public void ShowVideoForReward()
+    {
+        VideoAd.Show(OnAdOpened, null, OnAdClosed);
+        _isVideoForRewardShowed = true;
+    }
+    private void OnAdOpened()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void OnAdClosed()
+    {
+        Time.timeScale = 1;
+    }
+
+
     private IEnumerator Start()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
@@ -39,20 +53,15 @@ public class SDK : MonoBehaviour
         yield return YandexGamesSdk.Initialize(Initialized);
     }
 
-    public void ShowVideoForMoveForward()
-    {
-        VideoAd.Show(AdOpen, null, AdClosed);
-    }
 
     private void OnGiftChoosing()
     {
-        VideoAd.Show(AdOpen, null, AdClosed);
-        _isVideoForGiftShowed = true;
+        ShowVideoForReward();
     }
 
     private void OnNextButtonClicked()
     {
-        if (_isVideoForGiftShowed == false)
+        if (_isVideoForRewardShowed == false)
             InterstitialAd.Show();
     }
 }

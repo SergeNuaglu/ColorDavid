@@ -1,4 +1,5 @@
 using Agava.YandexGames;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -24,6 +25,17 @@ public class Game : MonoBehaviour
 
     public event UnityAction GameStarted;
 
+    private void Start()
+    {
+        _sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        _sceneCount = SceneManager.sceneCountInBuildSettings;
+         
+        if (YandexGamesSdk.IsInitialized == false)
+            _loadingScreen.Open();
+        else
+            GameStarted?.Invoke();
+    }
+
     private void OnEnable()
     {
         _circle.AllColorsMatched += OnAllColorsMatched;
@@ -35,12 +47,10 @@ public class Game : MonoBehaviour
         _levelsScreen.LevelChoosed += OnLevelChoosed;
         _loadingScreen.PlayButtonClicked += OnPlayButtonClicked;
         _sdk.Initialized += OnSDKInitialized;
-        _sdk.AdOpen += OnAdOpen;
-        _sdk.AdClosed += OnAdClosed;
     }
 
     private void OnDisable()
-    {
+    { 
         _circle.AllColorsMatched -= OnAllColorsMatched;
         _moveBoard.MovesCompleted -= OnMovesComleted;
         _playScreen.HomeButtonClicked -= OnHomeButtonClicked;
@@ -49,19 +59,6 @@ public class Game : MonoBehaviour
         _levelsScreen.LevelChoosed -= OnLevelChoosed;
         _loadingScreen.PlayButtonClicked -= OnPlayButtonClicked;
         _sdk.Initialized -= OnSDKInitialized;
-        _sdk.AdOpen -= OnAdOpen;
-        _sdk.AdClosed -= OnAdClosed;
-    }
-
-    private void Awake()
-    {
-        _sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        _sceneCount = SceneManager.sceneCountInBuildSettings;
-
-        if (YandexGamesSdk.IsInitialized == false)
-            _loadingScreen.Open();
-        else
-            GameStarted?.Invoke();
     }
 
     private void OnLeaderboardButtonClicked()
@@ -105,12 +102,9 @@ public class Game : MonoBehaviour
 
     private void StartGame()
     {
+        _loadingScreen.Close();
         GameStarted?.Invoke();
     }
-
-    private void OnAdClosed() => Time.timeScale = 1;
-
-    private void OnAdOpen() => Time.timeScale = 0;
 
     private void OnSDKInitialized() => StopLoading();
 

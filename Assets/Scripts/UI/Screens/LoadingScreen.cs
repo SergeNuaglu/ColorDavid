@@ -23,7 +23,7 @@ public class LoadingScreen : Screen
         _playButton.onClick.RemoveAllListeners();
     }
 
-    protected void Start()
+    private void Start()
     {
         _loadIconAnimator.SetBool(LoadFlagName, true);
     }
@@ -34,15 +34,10 @@ public class LoadingScreen : Screen
         _playButton.gameObject.SetActive(false);
     }
 
-    public override void Close()
-    {
-        base.Close();
-        _loadIconAnimator.SetBool(LoadFlagName, false);
-    }
-
     public void StopLoading()
     {
-        _playButton.gameObject.SetActive(true);
+        _loadIconAnimator.SetBool(LoadFlagName, false);
         _loadingIcon.enabled = false;
+        _playButton.gameObject.SetActive(true);
     }
 }

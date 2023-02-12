@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ShopScreen : ScrollViewScreen
@@ -12,32 +10,29 @@ public class ShopScreen : ScrollViewScreen
     [SerializeField] private Player _player;
     [SerializeField] private ClaimGoodScreen _claimGoodScreen;
     [SerializeField] private Shop _shop;
+    [SerializeField] private SDK _sdk;
 
     private List<GoodView> _views = new List<GoodView>();
-
-    public event UnityAction AddMoneyButtonClicked;
+    private int _rewardForAd = 200;
 
     private void OnEnable()
     {
         _sellButton.onClick.AddListener(OnSellButtonClicked);
-        _addMoneyButton.onClick.AddListener(() => OnButtonClicked(AddMoneyButtonClicked));
+        _addMoneyButton.onClick.AddListener(OnAddMoneyButtonClicked);
         _player.MoneyChanged += OnPlayerMoneyChanged;
         _shop.GiftGiven += OnGiftGiven;
         _claimGoodScreen.GoodClamed += OnGoodChoosed;
-
-        foreach (var view in _views)
-            view.Choosed += OnGoodChoosed;
     }
 
     private void OnDisable()
     {
-        _addMoneyButton.onClick.RemoveAllListeners();
+        _addMoneyButton.onClick.RemoveListener(OnAddMoneyButtonClicked);
         _player.MoneyChanged -= OnPlayerMoneyChanged;
         _claimGoodScreen.GoodClamed -= OnGoodChoosed;
         _shop.GiftGiven -= OnGiftGiven;
 
         foreach (var view in _views)
-            view.Choosed += OnGoodChoosed;
+            view.Choosed -= OnGoodChoosed;
     }
 
     private void Start()
@@ -46,11 +41,14 @@ public class ShopScreen : ScrollViewScreen
 
         if (_shop.ActiveGood == null)
             _shop.MakeDefaultGoodActive();
+
+        foreach (var view in _views)
+            view.Choosed += OnGoodChoosed;
     }
 
     private void OnGiftGiven(Good good)
     {
-       _claimGoodScreen.ShowGood(good);
+        _claimGoodScreen.ShowGood(good);
     }
 
     protected override void FillScrollView()
@@ -99,6 +97,12 @@ public class ShopScreen : ScrollViewScreen
         if (_shop.UnpurchasedGoods.Count > 0)
             if (_shop.TrySellGood(out good))
                 _claimGoodScreen.ShowGood(good);
+    }
+
+    private void OnAddMoneyButtonClicked()
+    {
+        _sdk.ShowVideoForReward();
+        _player.AddMoney(_rewardForAd);
     }
 }
 

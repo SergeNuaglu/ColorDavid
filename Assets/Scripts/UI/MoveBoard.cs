@@ -44,7 +44,7 @@ public class MoveBoard : MonoBehaviour
         {
             if (_circle.IsLocked() == false)
             {
-                _sdk.ShowVideoForMoveForward();
+                _sdk.ShowVideoForReward();
                 _circle.MakeForwardMove();
                 _currentMoveCount--;
                 MoveCount = _currentMoveCount;
