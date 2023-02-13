@@ -4,7 +4,7 @@ using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DeleteComponentsFromBuild : IProcessSceneWithReport
+public class DeleteComponentsFromBuild : MonoBehaviour, IProcessSceneWithReport
 {
     public int callbackOrder { get { return 0; } }
 
