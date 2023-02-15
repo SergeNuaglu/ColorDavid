@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CircleItem : MonoBehaviour, IColoredItem
 {
@@ -31,22 +32,30 @@ public class CircleItem : MonoBehaviour, IColoredItem
     public float GetAngleOnCircle()
     {
         float circleTotalAngle = 360f;
-        float positionX;
-        float positionZ;
+        Vector3 positionOnCircle;
         float sin;
         float cos;
         float result;
 
-        positionX = transform.position.x - _circle.transform.position.x;
-        positionZ = transform.position.z - _circle.transform.position.z;
-        sin = positionX * Vector3.forward.z - Vector3.forward.x * positionZ;
-        cos = positionX * Vector3.forward.x + positionZ * Vector3.forward.z;
+        positionOnCircle = GetPositionOnCircle();
+        sin = positionOnCircle.x * Vector3.forward.z - Vector3.forward.x * positionOnCircle.z;
+        cos = positionOnCircle.x * Vector3.forward.x + positionOnCircle.z * Vector3.forward.z;
         result = Mathf.Atan2(sin, cos) * ((circleTotalAngle / 2) / Mathf.PI);
 
         if (result < 0)
             return circleTotalAngle + result;
 
         return result;
+    }
+
+    public Vector3 GetPositionOnCircle()
+    {
+        float positionX;
+        float positionZ;
+
+        positionX = transform.position.x - _circle.transform.position.x;
+        positionZ = transform.position.z - _circle.transform.position.z;
+        return new Vector3(positionX, 0, positionZ);
     }
 
     public virtual void SetItemColor(ItemColor newColor)

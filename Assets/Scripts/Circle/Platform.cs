@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.ParticleSystem;
 
 public class Platform : CircleItem
 {
     [SerializeField] private David _david;
     [SerializeField] private Texture _secretTexture;
     [SerializeField] private ItemColor _defaultColor;
+    [SerializeField] private PlaceIndicator _indicator;
 
     private ItemColor _secretColor;
 
@@ -14,6 +16,7 @@ public class Platform : CircleItem
     public David David => _david;
     public float AngleOnCircle { get; private set; }
     public bool IsSecret { get; private set; }
+    public PlaceIndicator Indicator => _indicator;
 
     public event UnityAction ColorMatched;
 

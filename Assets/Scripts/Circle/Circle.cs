@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class Circle : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Circle : MonoBehaviour
     public float Radius => _radius;
     public float ArcAngle => _arcAngle;
     public IReadOnlyList<Platform> Platforms => _platforms;
+    public IReadOnlyList<Bowl> Bowls => _bowls;
 
     public event UnityAction AllColorsMatched;
     public event UnityAction ColorMismatchFound;
@@ -77,23 +79,12 @@ public class Circle : MonoBehaviour
     public float GetAngleToFixedPosition()
     {
         float smallerAngle = 360;
-        float positionX;
-        float positionZ;
-        Vector3 bowlPositionXZ;
-        Vector3 platformPositionXZ;
-
 
         foreach (var platform in _platforms)
         {
             foreach (var bowl in _bowls)
             {
-                positionX = bowl.transform.position.x - transform.position.x;
-                positionZ = bowl.transform.position.z - transform.position.z;
-                bowlPositionXZ = new Vector3(positionX, 0, positionZ);
-                positionX = platform.transform.position.x - transform.position.x;
-                positionZ = platform.transform.position.z - transform.position.z;
-                platformPositionXZ = new Vector3(positionX, 0, positionZ);
-                var angle = Vector3.SignedAngle(bowlPositionXZ.normalized, platformPositionXZ.normalized, Vector3.up);
+                var angle = GetAngleBetweenBowlAndPlatform(bowl, platform); 
 
                 if (Mathf.Abs(angle) < Mathf.Abs(smallerAngle))
                     smallerAngle = angle;
@@ -101,6 +92,16 @@ public class Circle : MonoBehaviour
         }
 
         return smallerAngle;
+    }
+
+    public float GetAngleBetweenBowlAndPlatform(Bowl bowl, Platform platform)
+    {
+        Vector3 bowlPositionOnCircle;
+        Vector3 platformPositionOnCircle;
+
+        bowlPositionOnCircle = bowl.GetPositionOnCircle();
+        platformPositionOnCircle = platform.GetPositionOnCircle();
+        return Vector3.SignedAngle(bowlPositionOnCircle.normalized, platformPositionOnCircle.normalized, Vector3.up);
     }
 
     public void TryAllowHitBowls()

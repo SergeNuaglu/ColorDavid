@@ -12,7 +12,7 @@ public class Bowl : CircleItem, IMovable
     public override void SetItemColor(ItemColor newColor)
     {
         base.SetItemColor(newColor);
-        CheckFreezeAnility(newColor);
+        CheckFreezeAbility(newColor);
     }
 
     public void Move(Vector3 newPosition)
@@ -20,7 +20,7 @@ public class Bowl : CircleItem, IMovable
         transform.position = newPosition;
     }
 
-    private void CheckFreezeAnility(ItemColor color)
+    private void CheckFreezeAbility(ItemColor color)
     {
         if(_freezeEffect != null)
         {

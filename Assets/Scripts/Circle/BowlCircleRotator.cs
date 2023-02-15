@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -18,7 +18,10 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private float _tuneAngle;
     private float _deltaRotation;
 
+    public bool CanRotate => _canRotate;
+
     public event UnityAction MoveDone;
+    public event UnityAction Rotating;
 
     private void OnEnable()
     {
@@ -36,6 +39,7 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public void OnBeginDrag(PointerEventData eventData)
     {
         _circleLastAngle = _circle.transform.eulerAngles.y;
+        Rotating?.Invoke();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -62,16 +66,7 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
         }
     }
 
-    private void OnForwardMoveMade()
-    {
-        TryStopCoroutine(_checkCircleLockingJob);
-        TryStopCoroutine(_completeRotationJob);
-        TryStopCoroutine(_waitingRoutine);
-        _canRotate = false;
-        _waitingRoutine = StartCoroutine(Wait());
-    }
-
-    private float GetDeltaRotation()
+    public float GetDeltaRotation()
     {
         float halfCircle = 180;
         float totalCircle = 360;
@@ -85,9 +80,27 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
         return delta;
     }
 
-    private void Rotate(Quaternion targetRotation)
+    public bool CheckRotationAmount(float deltaRotation)
     {
-        _circle.transform.rotation = Quaternion.Slerp(_circle.transform.rotation, targetRotation, _speed);
+        if (Mathf.Abs(_tuneAngle) > _minRotation || Mathf.Abs(deltaRotation) > _minRotation)
+            return true;
+
+        return false;
+    }
+
+    private void OnForwardMoveMade()
+    {
+        TryStopCoroutine(_checkCircleLockingJob);
+        TryStopCoroutine(_completeRotationJob);
+        TryStopCoroutine(_waitingRoutine);
+        _canRotate = false;
+        _waitingRoutine = StartCoroutine(Wait());
+    }
+
+
+    private void Rotate(Quaternion targetRotation)
+    {      
+       _circle.transform.rotation = Quaternion.Slerp(_circle.transform.rotation, targetRotation, _speed);
     }
 
     private void TryStopCoroutine(Coroutine coroutine)
@@ -106,18 +119,6 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
         TryStopCoroutine(_waitingRoutine);
     }
 
-    private bool CheckRotationAmount()
-    {
-        if (Mathf.Abs(_tuneAngle) > _minRotation || Mathf.Abs(_deltaRotation) > _minRotation)
-        {
-            MoveDone?.Invoke();
-            _circle.TryAllowHitBowls();
-            return true;
-        }
-
-        _canRotate = true;
-        return false;
-    }
 
     private IEnumerator CompleteRotationRutine(Quaternion targetRotation)
     {
@@ -127,8 +128,16 @@ public class BowlCircleRotator : MonoBehaviour, IBeginDragHandler, IDragHandler,
             yield return null;
         }
 
-        if (CheckRotationAmount())
+        if (CheckRotationAmount(_deltaRotation))
+        {
+            MoveDone?.Invoke();
+            _circle.TryAllowHitBowls();
             _waitingRoutine = StartCoroutine(Wait());
+        }
+        else
+        {
+            _canRotate = true;
+        }
     }
 
     private IEnumerator Wait()
