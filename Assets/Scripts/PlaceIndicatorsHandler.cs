@@ -37,7 +37,9 @@ public class PlaceIndicatorsHandler : MonoBehaviour
     private bool IsEnoughSpin()
     {
         float deltaRotation = _rotator.GetDeltaRotation();
-        return _rotator.CheckRotationAmount(deltaRotation);
+        float angleToFixedPosition = _circle.GetAngleToFixedPosition();
+
+        return _rotator.CheckRotationAmount(angleToFixedPosition, deltaRotation);
     }
 
     private void TurnOffAllIndicators()
@@ -52,7 +54,7 @@ public class PlaceIndicatorsHandler : MonoBehaviour
     {
         float offset = 0.01f;
 
-        while (_rotator.CanRotate)
+        while (_rotator.IsDragging)
         {
             var angleToFixedPosition = Mathf.Abs(_circle.GetAngleToFixedPosition());
 

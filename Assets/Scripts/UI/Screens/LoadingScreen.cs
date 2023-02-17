@@ -10,8 +10,13 @@ public class LoadingScreen : Screen
 
 
     private const string LoadFlagName = "IsLoad";
-
     public event UnityAction PlayButtonClicked;
+
+    protected override void Awake()
+    {    
+        _loadIconAnimator.SetBool(LoadFlagName, true);
+        _playButton.gameObject.SetActive(false);
+    }
 
     private void OnEnable()
     {
@@ -21,17 +26,6 @@ public class LoadingScreen : Screen
     private void OnDisable()
     {
         _playButton.onClick.RemoveAllListeners();
-    }
-
-    private void Start()
-    {
-        _loadIconAnimator.SetBool(LoadFlagName, true);
-    }
-
-    public override void Open()
-    {
-        base.Open();
-        _playButton.gameObject.SetActive(false);
     }
 
     public void StopLoading()

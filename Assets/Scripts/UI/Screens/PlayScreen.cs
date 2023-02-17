@@ -17,8 +17,9 @@ public class PlayScreen : Screen
     public event UnityAction StepForwardButtonClicked;
     public event UnityAction Opened;
 
-    protected override void Awake()
-    {
+   
+    private void Start()
+    {     
         _levelNumber.text = (SceneManager.GetActiveScene().buildIndex + 1).ToString();
     }
 

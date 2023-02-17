@@ -1,6 +1,4 @@
 using Agava.YandexGames;
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -31,10 +29,8 @@ public class Game : MonoBehaviour
         _sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         _sceneCount = SceneManager.sceneCountInBuildSettings;
          
-        if (YandexGamesSdk.IsInitialized == false)
-            _loadingScreen.Open();
-        else
-            GameStarted?.Invoke();
+        if (YandexGamesSdk.IsInitialized) 
+            StartGame();
     }
 
     private void OnEnable()
@@ -111,6 +107,7 @@ public class Game : MonoBehaviour
     private void StartGame()
     {
         _loadingScreen.Close();
+        _playScreen.Open();
         GameStarted?.Invoke();
     }
 
