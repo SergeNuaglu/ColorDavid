@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemColors:
   - {fileID: 11400000, guid: ed95d8e3c453737499344d6f390ab864, type: 2}
+  - {fileID: 11400000, guid: ed95d8e3c453737499344d6f390ab864, type: 2}
   - {fileID: 11400000, guid: d0a994918799b2e458d840d9369f825a, type: 2}
   - {fileID: 11400000, guid: ed95d8e3c453737499344d6f390ab864, type: 2}
-  - {fileID: 11400000, guid: 03845ad81195cfa40bd12bae66367ac9, type: 2}
