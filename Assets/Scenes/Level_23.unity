@@ -684,7 +684,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 6bbcba4e267be464998897741b81d508, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -970,8 +970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 59}
-  m_SizeDelta: {x: 952.57, y: 817.029}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 952.57, y: 685.829}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &173555326
 MonoBehaviour:
@@ -6837,7 +6837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.13000488, y: 167.16}
+  m_AnchoredPosition: {x: 0, y: 116}
   m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072632721
@@ -6992,7 +6992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -281.85}
+  m_AnchoredPosition: {x: -200, y: -245}
   m_SizeDelta: {x: 279.657, y: 125.484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085695428
@@ -8452,7 +8452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5441132860684524134, guid: 19ea7302ec10d8d4491387c3cefc583b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.1
+      value: -27.2
       objectReference: {fileID: 0}
     - target: {fileID: 5441132860684524134, guid: 19ea7302ec10d8d4491387c3cefc583b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8692,7 +8692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -281.85}
+  m_AnchoredPosition: {x: 200, y: -245}
   m_SizeDelta: {x: 279.657, y: 125.484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294352389
@@ -14747,9 +14747,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1978717128}
   - component: {fileID: 1978717130}
-  - component: {fileID: 1978717129}
   - component: {fileID: 1978717131}
   - component: {fileID: 1978717132}
+  - component: {fileID: 1978717133}
   m_Layer: 5
   m_Name: WinScreen
   m_TagString: Untagged
@@ -14782,36 +14782,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 952.57, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1978717129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978717127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.41960785}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1978717130
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14851,6 +14821,36 @@ MonoBehaviour:
   _fullGiftScreen: {fileID: 173555326}
   _winSign: {fileID: 818291743}
   _localizedText: {fileID: 818291745}
+--- !u!114 &1978717133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978717127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1993931584
 GameObject:
   m_ObjectHideFlags: 0

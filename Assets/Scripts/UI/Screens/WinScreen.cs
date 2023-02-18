@@ -33,11 +33,13 @@ public class WinScreen : Screen
     private void OnEnable()
     {
         _nextLevelButton.onClick.AddListener(() => OnButtonClicked(NextLevelButtonClicked));
+        _fullGiftScreen.Closed += OnFullGiftScreenClosed;
     }
 
     private void OnDisable()
     {
         _nextLevelButton.onClick.RemoveAllListeners();
+        _fullGiftScreen.Closed -= OnFullGiftScreenClosed;
     }
 
     public override void Open()
@@ -78,12 +80,20 @@ public class WinScreen : Screen
         }
     }
 
+    private void OnFullGiftScreenClosed()
+    {
+        _nextLevelButton.gameObject.SetActive(true);
+    }
+
     private IEnumerator ShowScreen(WaitForSeconds waitingTime)
     {
         yield return waitingTime;
 
         if (_gift.IsFull)
+        {
             _fullGiftScreen.Open();
+            _nextLevelButton.gameObject.SetActive(false);
+        }
 
         base.Open();
         StopCoroutine(_showScreenRoutine);
