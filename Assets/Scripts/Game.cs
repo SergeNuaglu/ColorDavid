@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class Game : MonoBehaviour
+public class Game : 
+    MonoBehaviour
 {
     [SerializeField] private Circle _circle;
     [SerializeField] private MoveBoard _moveBoard;
