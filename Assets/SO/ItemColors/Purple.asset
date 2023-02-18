@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b882915a75147044a501172cdd807b5, type: 3}
   m_Name: Purple
   m_EditorClassIdentifier: 
-  _mainColor: {r: 0.39215687, g: 0.40392157, b: 0.7882353, a: 1}
+  _mainColor: {r: 0.435, g: 0.234, b: 0.886, a: 1}
   _shadedColor: {r: 0.251602, g: 0.25954062, b: 0.5188679, a: 1}
   _canPaint: 1
+  _canFreeze: 0

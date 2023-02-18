@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b882915a75147044a501172cdd807b5, type: 3}
   m_Name: Green
   m_EditorClassIdentifier: 
-  _mainColor: {r: 0.3254902, g: 1, b: 0.46666667, a: 1}
-  _shadedColor: {r: 0.19215687, g: 0.5294118, b: 0.2627451, a: 1}
+  _mainColor: {r: 0, g: 0.8679245, b: 0.031370692, a: 1}
+  _shadedColor: {r: 0, g: 0.5943396, b: 0.021514555, a: 1}
   _canPaint: 1
+  _canFreeze: 0
