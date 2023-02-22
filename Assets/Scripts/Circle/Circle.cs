@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class Circle : MonoBehaviour
 {
@@ -37,6 +36,7 @@ public class Circle : MonoBehaviour
         _platforms.Add(newPlatform);
         newPlatform.SetAngleOnCircle();
         _moveHandler.AddColoredItem(newPlatform.David);
+        _moveHandler.AddFreezableItem(newPlatform.David);
     }
 
     public void SetStep(float step)

@@ -11,6 +11,7 @@ public static class AnimatorDavidController
 
     public static class States
     {
+        public const string Idle = "Base Layer.Idle";
         public const string Hit = "Base Layer.Hit";
         public const string Victory = "Base Layer.Victory";
     }

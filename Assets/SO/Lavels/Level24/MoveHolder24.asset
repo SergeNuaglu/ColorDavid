@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79092f483e548246a98ed1c67757e37, type: 3}
+  m_Name: MoveHolder24
+  m_EditorClassIdentifier: 
+  _moveCount: 4
+  _bowlMoveColors:
+  - {fileID: 11400000, guid: 6a0152f189724384091809867e11f4cd, type: 2}
+  - {fileID: 11400000, guid: c6bbcd3cec458104a9aa54c6f3621592, type: 2}
+  - {fileID: 11400000, guid: 70b408ef33772df448b165bbdc1b9280, type: 2}
+  - {fileID: 11400000, guid: 29f933a24dd8f10418f5ee3696be0a1b, type: 2}
+  - {fileID: 11400000, guid: 6568bd33e0797c74b9a9d74bb983b42e, type: 2}
+  _davidMoveColors:
+  - {fileID: 11400000, guid: cca5e70a5a336e64f93e1c19e044c4da, type: 2}
+  - {fileID: 11400000, guid: fab40fcbeb2eef54fa46323f32f4c167, type: 2}
+  - {fileID: 11400000, guid: 61ac10c5d89ae4c4ca11410bb1c64740, type: 2}
+  - {fileID: 11400000, guid: 5a32f091f5ab5db4f963fa49229aec1f, type: 2}
+  - {fileID: 11400000, guid: 312cdf59eb10fe74abb2c3e4186b0d6a, type: 2}
+  _bowlMoveArrangements:
+  - {fileID: 11400000, guid: c6b3a3c444804c54eba08e3321af74e4, type: 2}
+  - {fileID: 11400000, guid: 71ca555618e3c694fa170a29c25bb8d0, type: 2}
+  - {fileID: 11400000, guid: 25ef36f00279a3f4a8c6e3e3c23ae734, type: 2}
+  - {fileID: 11400000, guid: b5554345d328d0c4c870761f21e78f59, type: 2}
+  - {fileID: 11400000, guid: 4000d8a8d5720344293f42c2bcafc3d4, type: 2}
+  _davidIsFreezedConditions: []

@@ -28,3 +28,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5b7925dde2e02241b21d76d9ff9fb87, type: 2}
   - {fileID: 11400000, guid: c8f7ff1c867880443b48e12d5a532ba5, type: 2}
   - {fileID: 11400000, guid: 841e4195e98e0fa4daebdf31355a696a, type: 2}
+  _davidIsFreezedConditions:
+  - {fileID: 11400000, guid: d1018df63b03ed94199119878e32e052, type: 2}
+  - {fileID: 11400000, guid: 387397817c521bb4a929212bdb213eb2, type: 2}
+  - {fileID: 11400000, guid: c333b084735ac20478c2b6e1073880bc, type: 2}
+  - {fileID: 11400000, guid: 13e26a1c26742fe4b9fc8200f90ba54d, type: 2}

@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         TryRestoreData(ScoreKey, out _score);
 
         if (YandexGamesSdk.IsInitialized)
-            Leaderboard.SetScore(LeaderboardName, _score, ScoreSet);
+           OnSDKInitialized();
     }
 
     private void OnEnable()

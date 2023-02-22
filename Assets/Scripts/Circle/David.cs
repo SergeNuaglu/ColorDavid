@@ -4,7 +4,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Renderer))]
 
-public class David : MonoBehaviour, IColoredItem
+public class David : MonoBehaviour, IColoredItem, IFreezable
 {
     [SerializeField] private ParticleSystem _freezeActivateEffect;
     [SerializeField] private Transform _hammerParent;
@@ -87,16 +87,27 @@ public class David : MonoBehaviour, IColoredItem
         _animator.SetTrigger(AnimatorDavidController.Params.Hit);
     }
 
-    public void Unfreeze()
+    public void Unfreeze(bool isMadeMoveForAd = false)
     {
-        _animator.SetTrigger(AnimatorDavidController.Params.FreezeOff);
+        if (isMadeMoveForAd)
+            _animator.Play(AnimatorDavidController.States.Idle);
+        else
+            _animator.SetTrigger(AnimatorDavidController.Params.FreezeOff);
+
         IsFreezed = false;
+    }
+
+    public void Freeze()
+    {
+        _animator.SetTrigger(AnimatorDavidController.Params.FreezeOn);
+        IsFreezed = true;
     }
 
     public void CelebrateVictory()
     {
         _animator.Play(AnimatorDavidController.States.Victory);
     }
+
     private void OnScreenClosed()
     {
         _animator.SetTrigger(AnimatorDavidController.Params.GetHammer);
@@ -111,8 +122,7 @@ public class David : MonoBehaviour, IColoredItem
     private void OnBowlFreezing()
     {
         _freezeActivateEffect.Play();
-        _animator.SetTrigger(AnimatorDavidController.Params.FreezeOn);
-        IsFreezed = true;
+        Freeze();
     }
 
     private void ExchangeColors(IColoredItem colorItem)

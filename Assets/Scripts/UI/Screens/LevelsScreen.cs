@@ -25,6 +25,7 @@ public class LevelsScreen : ScrollViewScreen
         _currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
         FillScrollView();
     }
+
     protected override void FillScrollView()
     {
         for (int i = 0; i < _levelCount; i++)

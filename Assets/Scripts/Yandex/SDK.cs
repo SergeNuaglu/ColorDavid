@@ -18,7 +18,7 @@ public class SDK : MonoBehaviour
     }
 
     private void OnEnable()
-    { 
+    {
         _giftGenerator.GiftChoosing += OnGiftChoosing;
         _winScreen.NextLevelButtonClicked += OnNextButtonClicked;
     }
@@ -34,6 +34,12 @@ public class SDK : MonoBehaviour
         VideoAd.Show(OnAdOpened, null, OnAdClosed);
         _isVideoForRewardShowed = true;
     }
+
+    public void ShowInterstitialAd()
+    {
+        InterstitialAd.Show();
+    }
+
     private void OnAdOpened()
     {
         Time.timeScale = 0;
@@ -61,7 +67,6 @@ public class SDK : MonoBehaviour
 
     private void OnNextButtonClicked()
     {
-        if (_isVideoForRewardShowed == false)
-            InterstitialAd.Show();
+        ShowInterstitialAd();
     }
 }

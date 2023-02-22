@@ -8,6 +8,7 @@ public class MovesHandler : MonoBehaviour
     private List<IColoredItem> _bowls = new List<IColoredItem>();
     private List<IColoredItem> _davids = new List<IColoredItem>();
     private List<IMovable> _movableItems = new List<IMovable>();
+    private List<IFreezable> _freezableItems = new List<IFreezable>();
     private OneMoveColorData _colorData;
 
     private int _nextMove = 1;
@@ -25,21 +26,29 @@ public class MovesHandler : MonoBehaviour
         _movableItems.Add(item);
     }
 
+    public void AddFreezableItem(IFreezable item)
+    {
+        _freezableItems.Add(item);
+    }
+
     public void MakeMove(float step, float radius, float positionY)
     {
         float positionX;
         float positionZ;
-        IReadOnlyList<bool> nextArrangement;
+        IReadOnlyList<bool> nextIsFreezedCondition;
+        IReadOnlyList<bool> nextBowlsArrangement;
         Vector3 newPosition;
         int counter = 0;
 
+        nextIsFreezedCondition = _moveHolder.DavidIsFreezedConditions[_nextMove].Data;
+        SetIsFreezedConditions(nextIsFreezedCondition);
         ChangeColors(_nextMove, _bowls, _moveHolder.BowlMoveColors);
         ChangeColors(_nextMove, _davids, _moveHolder.DavidMoveColors);
-        nextArrangement = _moveHolder.BowlMoveArrangements[_nextMove].Data;
+        nextBowlsArrangement = _moveHolder.BowlMoveArrangements[_nextMove].Data;
 
-        for (int i = 0; i < nextArrangement.Count; i++)
+        for (int i = 0; i < nextBowlsArrangement.Count; i++)
         {
-            if (nextArrangement[i])
+            if (nextBowlsArrangement[i])
             {
                 positionX = (radius) * Mathf.Sin(step * i);
                 positionZ = (radius) * Mathf.Cos(step * i);
@@ -75,9 +84,34 @@ public class MovesHandler : MonoBehaviour
         for (int i = 0; i < coloredItems.Count; i++)
             coloredItems[i].SetItemColor(_colorData.ItemColors[i]);
     }
+
+    private void SetIsFreezedConditions(IReadOnlyList<bool> nextIsFreezedCondition)
+    {
+        for (int i = 0; i < _freezableItems.Count; i++)
+        {
+            if (nextIsFreezedCondition[i])
+            {
+                if (_freezableItems[i].IsFreezed == false)
+                    _freezableItems[i].Freeze();
+            }
+            else
+            {
+                _freezableItems[i].Unfreeze(true);
+            }
+        }
+    }
 }
 
 public interface IMovable
 {
     void Move(Vector3 newPosition);
+}
+
+public interface IFreezable
+{
+    public bool IsFreezed { get; }
+
+    void Freeze();
+
+    void Unfreeze(bool isMadeMoveForAd = false);
 }

@@ -31,3 +31,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5900efebf67830f4382b19dcefb39602, type: 2}
   - {fileID: 11400000, guid: 45f7a04244ca0e14b8ca407bf133d75c, type: 2}
   - {fileID: 11400000, guid: 9cff14f628cdc294c8f3d0134c811563, type: 2}
+  _davidIsFreezedConditions:
+  - {fileID: 11400000, guid: 5e66e12d7a2660d49a972f765febf09f, type: 2}
+  - {fileID: 11400000, guid: c4c3a3e5a1009b84eaa2f37a8d73c585, type: 2}
+  - {fileID: 11400000, guid: 0b278f127a70a0947a766ebcf8bfeeac, type: 2}
+  - {fileID: 11400000, guid: 3b3108f96e676fb4baa5960386d0663d, type: 2}
+  - {fileID: 11400000, guid: 16aee11d2383552418166e590be0e384, type: 2}

@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class Game : 
-    MonoBehaviour
+public class Game : MonoBehaviour
 {
     [SerializeField] private Circle _circle;
     [SerializeField] private MoveBoard _moveBoard;
@@ -29,8 +28,8 @@ public class Game :
     {
         _sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         _sceneCount = SceneManager.sceneCountInBuildSettings;
-         
-        if (YandexGamesSdk.IsInitialized) 
+
+        if (YandexGamesSdk.IsInitialized)
             StartGame();
     }
 
@@ -49,7 +48,7 @@ public class Game :
     }
 
     private void OnDisable()
-    { 
+    {
         _circle.AllColorsMatched -= OnAllColorsMatched;
         _moveBoard.MovesCompleted -= OnMovesComleted;
         _playScreen.HomeButtonClicked -= OnHomeButtonClicked;
@@ -112,6 +111,16 @@ public class Game :
         GameStarted?.Invoke();
     }
 
+    private void RestartGame()
+    {
+        int lastTuturialLevelIndex = 2;
+
+        if (_sceneBuildIndex > lastTuturialLevelIndex)
+            _sdk.ShowInterstitialAd();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     private void OnSDKInitialized() => StopLoading();
 
     private void OnPlayButtonClicked() => StartGame();
@@ -121,6 +130,4 @@ public class Game :
     private void OnLevelChoosed(int choosedLevelBuildIndex) => SceneManager.LoadScene(choosedLevelBuildIndex);
 
     private void OnMovesComleted() => RestartGame();
-
-    private void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 }

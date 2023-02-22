@@ -16,7 +16,6 @@ MonoBehaviour:
   _platformArrangement: {fileID: 11400000, guid: 260eb474c9821a84d9277549ac73e1c9, type: 2}
   _secretPlatformArrangement: {fileID: 11400000, guid: 3233af3d9893efc40b9fec427935eeb4, type: 2}
   _platformColorData: {fileID: 11400000, guid: 0c127019d529b784f923b1deb7b40a81, type: 2}
-  _davidColorData: {fileID: 11400000, guid: 4c5c149b0ff884c4f8d2e7d10f03b189, type: 2}
   _platformCount: 3
   _bowlCount: 4
   _moveHolder: {fileID: 11400000, guid: c9d18b6db4226c845ba4a37b85e82117, type: 2}

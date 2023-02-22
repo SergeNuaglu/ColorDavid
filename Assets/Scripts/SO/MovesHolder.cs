@@ -9,12 +9,14 @@ public class MovesHolder : ScriptableObject
     [SerializeField] private OneMoveColorData[] _bowlMoveColors;
     [SerializeField] private OneMoveColorData[] _davidMoveColors;
     [SerializeField] private Arrangement[] _bowlMoveArrangements;
+    [SerializeField] private Arrangement[] _davidIsFreezedConditions;
 
     public int MoveCount => _moveCount;
 
     public IReadOnlyList<OneMoveColorData> BowlMoveColors => _bowlMoveColors;
     public IReadOnlyList<OneMoveColorData> DavidMoveColors => _davidMoveColors;
     public IReadOnlyList<Arrangement> BowlMoveArrangements => _bowlMoveArrangements;
+    public IReadOnlyList<Arrangement> DavidIsFreezedConditions => _davidIsFreezedConditions;
 
     private void OnValidate()
     {

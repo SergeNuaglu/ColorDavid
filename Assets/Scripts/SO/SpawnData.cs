@@ -38,6 +38,9 @@ public class SpawnData : ScriptableObject
 
         foreach (var oneMoveArrangement in _moveHolder.BowlMoveArrangements)
             TryCorrectLength(oneMoveArrangement, _circleStepCount);
+
+        foreach (var isFreezedCondition in _moveHolder.DavidIsFreezedConditions)
+            TryCorrectLength(isFreezedCondition, _platformCount);
     }
 
     private void TryCorrectLength(OneMoveColorData colorData, int length)
